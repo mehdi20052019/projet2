@@ -1,4 +1,5 @@
 const ORDERS_COLLECTION = "orders";
+const FIREBASE_SDK_VERSION = "12.7.0";
 const config = window.POWERSHIELD_FIREBASE_CONFIG || {};
 const hasConfig = Boolean(config.apiKey && config.projectId && !String(config.apiKey).includes("YOUR_"));
 
@@ -9,8 +10,8 @@ async function initFirebase() {
   if (!hasConfig || db) return;
 
   const [appModule, firestoreModule] = await Promise.all([
-    import("https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js"),
-    import("https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js")
+    import(`https://www.gstatic.com/firebasejs/${FIREBASE_SDK_VERSION}/firebase-app.js`),
+    import(`https://www.gstatic.com/firebasejs/${FIREBASE_SDK_VERSION}/firebase-firestore.js`)
   ]);
 
   const app = appModule.initializeApp(config);

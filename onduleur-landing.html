@@ -2107,11 +2107,14 @@ async function submitOrder() {
     }
   } catch (error) {
     console.warn('Firebase order save failed:', error);
+    order.firebaseError = error?.code || error?.message || 'unknown';
+    orders[0] = order;
+    localStorage.setItem('powershield_orders', JSON.stringify(orders));
   }
 
   alert(savedRemote
     ? 'شكراً! تم تسجيل طلبك في قاعدة البيانات. سيتصل بك فريقنا قريباً.'
-    : 'شكراً! تم تسجيل طلبك محلياً. سيتصل بك فريقنا قريباً.'
+    : `شكراً! تم تسجيل طلبك محلياً، لكن لم يصل إلى Firebase${order.firebaseError ? ' — السبب: ' + order.firebaseError : ''}.`
   );
 }
 </script>
