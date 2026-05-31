@@ -473,6 +473,8 @@ th {
 </div>
 
 <script src="js/algeria-cities.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/firebase-service.js"></script>
 <script>
 const STORE_KEY = 'powershield_orders';
 const prices = {
@@ -491,8 +493,20 @@ const statusLabels = {
 const statusFlow = ['new', 'confirmed', 'delivered', 'cancelled'];
 let orders = [];
 
-function loadOrders() {
+async function loadOrders() {
   orders = JSON.parse(localStorage.getItem(STORE_KEY) || '[]');
+
+  if (!window.PowerShieldFirebase?.enabled) return;
+
+  try {
+    const firebaseOrders = await window.PowerShieldFirebase.fetchOrders();
+    if (firebaseOrders.length) {
+      orders = firebaseOrders;
+      localStorage.setItem(STORE_KEY, JSON.stringify(orders));
+    }
+  } catch (error) {
+    console.warn('Firebase orders load failed:', error);
+  }
 }
 
 function saveOrders() {
@@ -616,11 +630,20 @@ function render() {
   document.getElementById('coverage').textContent = `${wilayaCount} / ${cities.length || 1541}`;
 }
 
-function nextStatus(id) {
+async function nextStatus(id) {
   const order = orders.find(item => item.id === id);
   if (!order) return;
   const current = statusFlow.indexOf(order.status || 'new');
   order.status = statusFlow[(current + 1) % statusFlow.length];
+
+  try {
+    if (window.PowerShieldFirebase?.enabled && order.firebaseDocId) {
+      await window.PowerShieldFirebase.updateOrderStatus(order.firebaseDocId, order.status);
+    }
+  } catch (error) {
+    console.warn('Firebase order status update failed:', error);
+  }
+
   saveOrders();
   render();
 }
@@ -684,18 +707,38 @@ document.addEventListener('click', event => {
 ['searchInput', 'statusFilter', 'typeFilter'].forEach(id => {
   document.getElementById(id).addEventListener('input', render);
 });
-document.getElementById('refreshBtn').addEventListener('click', () => { loadOrders(); render(); });
+document.getElementById('refreshBtn').addEventListener('click', async () => {
+  await loadOrders();
+  render();
+});
 document.getElementById('seedBtn').addEventListener('click', seedDemoData);
 document.getElementById('exportBtn').addEventListener('click', exportCsv);
-document.getElementById('clearBtn').addEventListener('click', () => {
-  if (!confirm('حذف كل الطلبات المحلية؟')) return;
+document.getElementById('clearBtn').addEventListener('click', async () => {
+  const message = window.PowerShieldFirebase?.enabled
+    ? 'حذف كل الطلبات من Firebase والنسخة المحلية؟'
+    : 'حذف كل الطلبات المحلية؟';
+  if (!confirm(message)) return;
+
+  if (window.PowerShieldFirebase?.enabled) {
+    try {
+      await window.PowerShieldFirebase.deleteAllOrders();
+    } catch (error) {
+      console.warn('Firebase orders delete failed:', error);
+    }
+  }
+
   orders = [];
   saveOrders();
   render();
 });
 
-loadOrders();
-render();
+async function bootDashboard() {
+  await loadOrders();
+  render();
+}
+
+window.addEventListener('powershield:firebase-ready', bootDashboard, { once: true });
+bootDashboard();
 </script>
 </body>
 </html>

@@ -1762,6 +1762,8 @@ background: transparent;
 </footer>
  
 <script src="js/algeria-cities.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/firebase-service.js"></script>
 <script>
 // ===== SIDEBAR =====
 const sidebarToggle = document.getElementById('sidebar-toggle');
@@ -2049,7 +2051,7 @@ function changeQty(delta) {
   document.getElementById('qtyDisplay').textContent = qty;
 }
  
-function submitOrder() {
+async function submitOrder() {
   const nameInput = document.getElementById('customer-name');
   const phoneInput = document.getElementById('customer-phone');
   const wilayaSelect = document.getElementById('wilaya-select');
@@ -2091,7 +2093,26 @@ function submitOrder() {
 
   orders.unshift(order);
   localStorage.setItem('powershield_orders', JSON.stringify(orders));
-  alert('شكراً! تم تسجيل طلبك وربطه بلوحة التحكم. سيتصل بك فريقنا قريباً.');
+
+  let savedRemote = false;
+  try {
+    if (window.PowerShieldFirebase?.enabled) {
+      const firebaseDocId = await window.PowerShieldFirebase.saveOrder(order);
+      if (firebaseDocId) {
+        order.firebaseDocId = firebaseDocId;
+        orders[0] = order;
+        localStorage.setItem('powershield_orders', JSON.stringify(orders));
+        savedRemote = true;
+      }
+    }
+  } catch (error) {
+    console.warn('Firebase order save failed:', error);
+  }
+
+  alert(savedRemote
+    ? 'شكراً! تم تسجيل طلبك في قاعدة البيانات. سيتصل بك فريقنا قريباً.'
+    : 'شكراً! تم تسجيل طلبك محلياً. سيتصل بك فريقنا قريباً.'
+  );
 }
 </script>
 </body>
