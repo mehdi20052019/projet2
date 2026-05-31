@@ -1,0 +1,2098 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PowerShield Pro — Onduleur Online Rackable | حماية أجهزتك</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #050810;
+  --navy: #080f1e;
+  --navy-mid: #0d1a35;
+  --blue: #0a7ff5;
+  --blue-bright: #1a90ff;
+  --blue-glow: rgba(10,127,245,0.35);
+  --blue-soft: rgba(10,127,245,0.12);
+  --white: #f0f4ff;
+  --white-dim: rgba(240,244,255,0.72);
+  --white-faint: rgba(240,244,255,0.12);
+  --glass: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.08);
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --font-arabic: 'Cairo', sans-serif;
+  --font-display: 'Syne', sans-serif;
+  --shadow-blue: 0 0 60px rgba(10,127,245,0.2);
+  --shadow-card: 0 8px 40px rgba(0,0,0,0.5);
+  --muted: #5a7aaa;
+  --gold: #f5c518;
+  --gold2: #ffd740;
+  --accent: #3a9ff5;
+  --text: #e8f0ff;
+  --blue: #1a4b8c;
+  --blue2: #1e5ab0;
+  --border: rgba(60,100,180,0.25);
+}
+ 
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-arabic);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 2px; }
+ 
+/* ===== SIDEBAR ===== */
+.sidebar-toggle {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  z-index: 300;
+  background: linear-gradient(180deg, rgba(10,127,245,0.18) 0%, rgba(10,127,245,0.06) 100%);
+  border: 1px solid rgba(10,127,245,0.3);
+  border-right: none;
+  border-radius: 0 0 0 0;
+  width: 28px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  backdrop-filter: blur(10px);
+  border-radius: 0 8px 8px 0;
+  overflow: hidden;
+}
+.sidebar-toggle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(10,127,245,0.15));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.sidebar-toggle:hover::before { opacity: 1; }
+.sidebar-toggle:hover { width: 34px; border-color: rgba(10,127,245,0.6); }
+.sidebar-toggle:hover .toggle-bar { width: 14px; }
+.toggle-bar {
+  width: 10px;
+  height: 2px;
+  background: var(--blue-bright);
+  border-radius: 2px;
+  transition: all 0.3s;
+  box-shadow: 0 0 6px rgba(26,144,255,0.5);
+}
+.toggle-bar:nth-child(2) { width: 7px; opacity: 0.6; }
+.sidebar-toggle.open .toggle-bar:nth-child(1) { transform: rotate(45deg) translate(2px, 3px); width: 12px; }
+.sidebar-toggle.open .toggle-bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.sidebar-toggle.open .toggle-bar:nth-child(3) { transform: rotate(-45deg) translate(2px, -3px); width: 12px; }
+ 
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  height: 100dvh;
+  width: 260px;
+  z-index: 299;
+  background: rgba(5,8,16,0.97);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-right: 1px solid rgba(10,127,245,0.15);
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--blue-bright), transparent);
+}
+.sidebar::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 20px;
+  width: 60px; height: 60px;
+  background: radial-gradient(circle, rgba(10,127,245,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.sidebar.open { transform: translateX(0); }
+ 
+.sidebar-glow {
+  position: absolute;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(10,127,245,0.08) 0%, transparent 70%);
+  top: 40px; right: -60px;
+  pointer-events: none;
+  animation: sideGlow 4s ease-in-out infinite;
+}
+@keyframes sideGlow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+ 
+.sidebar-header {
+  padding: 28px 22px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sidebar-logo-icon {
+  width: 32px; height: 32px;
+  background: var(--blue);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 16px rgba(10,127,245,0.4);
+  flex-shrink: 0;
+}
+.sidebar-logo-text {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.sidebar-logo-text span { color: var(--blue-bright); }
+ 
+.sidebar-label {
+  padding: 18px 22px 8px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(10,127,245,0.5);
+}
+ 
+.sidebar-nav {
+  flex: 1;
+  padding: 0 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+ 
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--white-dim);
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: right;
+  font-family: var(--font-arabic);
+}
+.sidebar-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10,127,245,0.1), rgba(10,127,245,0.04));
+  opacity: 0;
+  transition: opacity 0.25s;
+  border-radius: 10px;
+}
+.sidebar-link:hover::before { opacity: 1; }
+.sidebar-link:hover { color: var(--white); transform: translateX(4px); }
+.sidebar-link:hover .sl-icon { color: var(--blue-bright); box-shadow: 0 0 12px rgba(10,127,245,0.4); }
+.sidebar-link.active { color: var(--blue-bright); background: rgba(10,127,245,0.08); border: 1px solid rgba(10,127,245,0.15); }
+.sidebar-link.active .sl-icon { color: var(--blue-bright); }
+ 
+.sl-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  transition: all 0.25s;
+  color: var(--muted);
+}
+.sl-text { flex: 1; }
+.sl-arrow {
+  font-size: 0.6rem;
+  opacity: 0.4;
+  transition: all 0.25s;
+  color: var(--blue-bright);
+}
+.sidebar-link:hover .sl-arrow { opacity: 1; transform: translateX(-3px); }
+ 
+.sidebar-footer {
+  padding: 16px 22px 38px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.sidebar-wa-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(37,211,102,0.1);
+  border: 1px solid rgba(37,211,102,0.25);
+  border-radius: 10px;
+  padding: 11px 16px;
+  color: #25D366;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s;
+  font-family: var(--font-arabic);
+}
+.sidebar-wa-btn:hover { background: rgba(37,211,102,0.18); border-color: rgba(37,211,102,0.4); transform: translateY(-1px); }
+ 
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 298;
+  background: rgba(5,8,16,0.6);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+ 
+/* ===== TOPBAR ===== */
+.topbar {
+  background: var(--blue);
+  padding: 9px 0;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  position: relative;
+  overflow: hidden;
+}
+.topbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  animation: shimmer 3s infinite;
+}
+.topbar-items {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding: 0 16px;
+  position: relative;
+}
+.topbar-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.topbar-item svg { width: 14px; height: 14px; flex-shrink: 0; }
+ 
+/* ===== NAVBAR ===== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(5,8,16,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 0 clamp(16px, 5vw, 60px);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--blue);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px var(--blue-glow);
+}
+.logo-text {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.logo-text span { color: var(--blue); }
+.nav-actions { display: flex; gap: 12px; align-items: center; }
+.btn-whatsapp-nav {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #25D366;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s;
+  border: none;
+  cursor: pointer;
+}
+.btn-whatsapp-nav:hover { background: #1ebe5d; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+ 
+/* ===== HERO ===== */
+.hero {
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(40px, 8vh, 80px) clamp(16px, 5vw, 80px);
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(10,127,245,0.14) 0%, transparent 60%);
+}
+.hero-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(10,127,245,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10,127,245,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+.hero-bg-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(10,127,245,0.18) 0%, transparent 70%);
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--blue-soft);
+  border: 1px solid rgba(10,127,245,0.3);
+  border-radius: 50px;
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--blue-bright);
+  margin-bottom: 20px;
+  animation: fadeDown 0.6s ease both;
+}
+.badge-dot { width: 6px; height: 6px; background: var(--blue); border-radius: 50%; animation: pulseDot 1.5s ease infinite; }
+.hero-headline {
+  font-family: var(--font-arabic);
+  font-weight: 900;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  line-height: 1.25;
+  margin-bottom: 18px;
+  animation: fadeDown 0.6s 0.1s ease both;
+}
+.hero-headline .accent { color: var(--blue-bright); }
+.hero-sub {
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  color: var(--white-dim);
+  margin-bottom: 32px;
+  max-width: 480px;
+  font-weight: 400;
+  animation: fadeDown 0.6s 0.2s ease both;
+}
+.hero-ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  animation: fadeDown 0.6s 0.3s ease both;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--blue);
+  color: #fff;
+  padding: 15px 28px;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 0 30px var(--blue-glow);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transition: left 0.5s;
+}
+.btn-primary:hover { background: var(--blue-bright); transform: translateY(-2px); box-shadow: 0 6px 40px rgba(10,127,245,0.5); }
+.btn-primary:hover::after { left: 150%; }
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: var(--white);
+  padding: 15px 28px;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--glass-border);
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.btn-secondary:hover { background: var(--white-faint); border-color: rgba(255,255,255,0.2); }
+.hero-trust {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  animation: fadeDown 0.6s 0.4s ease both;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--white-dim);
+  font-weight: 500;
+}
+.trust-icon { color: var(--blue-bright); }
+ 
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  animation: fadeLeft 0.8s 0.2s ease both;
+}
+.product-showcase {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  direction: ltr !important;
+}
+.capacity-selector {
+  display:flex; gap: 8px; justify-content: center; margin-bottom: 24px;
+}
+.kva-btn {
+    padding: 8px 24px; border-radius: 50px;
+    border: 1.5px solid rgba(60,100,180,0.3);
+    background: transparent; color: var(--muted);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px; font-weight: 600; letter-spacing: 0.06em;
+    cursor: pointer; transition: all 0.2s; text-transform: uppercase;
+  }
+  .kva-btn:hover { border-color: var(--accent); color: var(--text); }
+  .kva-btn.active {
+    background: rgba(58,159,245,0.12);
+    border-color: var(--accent); color: var(--accent);
+  }
+ 
+.cap-btn {
+  background: transparent;
+  border: none;
+  color: #aac4ff;
+  padding: 8px 24px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.cap-btn.active {
+  background: var(--blue-bright);
+  color: #ffffff;
+  box-shadow: 0 0 15px var(--blue-bright);
+}
+.type-selector{
+ display: flex; gap: 8px; justify-content: center; margin-bottom: 26px;
+}
+.type-btn, .cap-btn {
+  padding: 11px 32px;
+    border-radius: 50px;
+    border: 1.5px solid rgba(60,100,180,0.35);
+    background: transparent;
+    color: var(--muted); font-family: 'Rajdhani', sans-serif;
+    font-size: 15px; font-weight: 600; letter-spacing: 0.08em;
+    cursor: pointer; transition: all 0.22s; text-transform: uppercase;
+}
+.type-btn:hover, .cap-btn:hover {
+border-color: var(--accent); color: var(--text);}
+.type-btn.active, .cap-btn.active {
+background: transparent;
+    border-color: var(--gold);
+    color: var(--gold);
+    box-shadow: 0 0 20px rgba(245,197,24,0.15);
+}
+.product-3d-wrapper {
+  background: linear-gradient(160deg, #0e1f3d 0%, #0a1628 100%);
+    border: 1px solid var(--border);
+    border-radius: 20px; overflow: hidden;
+    transition: transform 0.3s;
+    position: relative;
+}
+.product-3d-wrapper::before {
+  content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(58,159,245,0.5), transparent);
+}
+.ups-render {
+  width: 100%;
+  height: 321px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ups-real-image {
+  width: 100% !important;
+  height: 100% !important;
+      padding: 10px 0px 10px 0px;
+  object-fit: contain;
+  object-position: center;  
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.6));
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.image-fade-out {
+  opacity: 0;
+  transform: scale(0.97);
+}
+.product-actions {
+    display: flex;
+    gap: 10px;
+    padding: 0 20px 22px;}
+ 
+.btn-primary {
+  flex: 2; padding: 13px;
+    background: linear-gradient(135deg, var(--blue2), var(--blue));
+    border: none; border-radius: 12px; color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(26,75,140,0.4);
+}
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(26,75,140,0.55); }
+ 
+.btn-compact {
+  flex: 1; padding: 13px;
+    background: transparent;
+    border: 1.5px solid var(--border); border-radius: 12px;
+    color: var(--muted); font-family: 'Rajdhani', sans-serif;
+    font-size: 15px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; cursor: pointer;
+    transition: all 0.2s;
+}
+.btn-compact:hover {
+  border-color: var(--accent); color: var(--text);
+}
+ 
+.specs-strip {
+    display: flex; justify-content: space-around; align-items: flex-start;
+    padding: 20px 1px 18px;
+    border-top: 1px solid var(--border);
+  }
+  .spec {
+    text-align: center; flex: 1;
+  }
+  .spec-power, .spec-battery , .spec-eco  {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 22px; font-weight: 700; color: var(--accent);
+    letter-spacing: 0.02em; line-height: 1;
+    margin-bottom: 4px;
+  }
+  .spec-lbl {
+    font-size: 10px; color: var(--muted); letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .spec {
+    border-left: 1px solid var(--border);
+  }
+ 
+.product-badge-floating {
+  position: absolute;
+  background: rgba(5,8,16,0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  box-shadow: var(--shadow-card);
+}
+.badge-top-left { top: -10px; right: -10px; }
+.badge-bottom-left { bottom: -35px; left: -13px; }
+.badge-value { color: var(--blue-bright); font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; }
+ 
+.floating-stat {
+  position: absolute;
+  background: rgba(10,127,245,0.15);
+  border: 1px solid rgba(10,127,245,0.3);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.7rem;
+  text-align: center;
+}
+.floating-stat .val { font-family: var(--font-display); font-weight: 800; font-size: 1rem; color: var(--blue-bright); display: block; }
+.stat-left { left: -60px; top: 40%; }
+.stat-right { right: -60px; top: 40%; }
+ 
+/* ===== SECTION WRAPPER ===== */
+.section {
+  padding: clamp(60px, 8vw, 100px) clamp(16px, 5vw, 80px);
+}
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section-label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--blue-bright);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.section-sub {
+  color: var(--white-dim);
+  font-size: 1rem;
+  max-width: 580px;
+  margin-bottom: 50px;
+}
+.text-center { text-align: center; }
+.text-center .section-sub { margin-left: auto; margin-right: auto; }
+.accent { color: var(--blue-bright); }
+ 
+/* ===== PROBLEM/SOLUTION ===== */
+.problem-section {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.problem-section::before {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(10,127,245,0.08) 0%, transparent 70%);
+  top: -100px; right: -100px;
+  pointer-events: none;
+}
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.problem-cards { display: flex; flex-direction: column; gap: 16px; }
+.problem-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.problem-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(239,68,68,0.05) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.problem-card:hover::before { opacity: 1; }
+.problem-card:hover { border-color: rgba(239,68,68,0.3); transform: translateX(-4px); }
+.problem-icon {
+  width: 44px; height: 44px;
+  background: rgba(239,68,68,0.1);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.2rem;
+}
+.problem-text h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+.problem-text p { font-size: 0.82rem; color: var(--white-dim); }
+ 
+.solution-panel {
+  background: linear-gradient(135deg, rgba(10,127,245,0.1) 0%, rgba(10,127,245,0.04) 100%);
+  border: 1px solid rgba(10,127,245,0.25);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  position: relative;
+  overflow: hidden;
+}
+.solution-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--blue), transparent);
+}
+.solution-headline { font-size: 1.5rem; font-weight: 900; margin-bottom: 12px; }
+.solution-desc { font-size: 0.9rem; color: var(--white-dim); margin-bottom: 24px; }
+.solution-points { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.solution-points li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+.solution-points li::before {
+  content: '';
+  width: 18px; height: 18px;
+  background: var(--blue-soft);
+  border: 1px solid rgba(10,127,245,0.4);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M13 4L6 11 3 8' stroke='%230a7ff5' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+ 
+/* ===== FEATURES ===== */
+.features-section { background: var(--black); }
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+.feature-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 28px 22px;
+  transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+.feature-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--blue);
+  transform: scaleX(0);
+  transition: transform 0.35s;
+  transform-origin: right;
+}
+.feature-card:hover { background: rgba(10,127,245,0.06); border-color: rgba(10,127,245,0.3); transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+.feature-card:hover::after { transform: scaleX(1); transform-origin: left; }
+.feature-icon {
+  width: 50px; height: 50px;
+  background: var(--blue-soft);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+  transition: all 0.3s;
+}
+.feature-card:hover .feature-icon { background: rgba(10,127,245,0.25); box-shadow: 0 0 20px var(--blue-glow); }
+.feature-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+.feature-desc { font-size: 0.8rem; color: var(--white-dim); line-height: 1.6; }
+ 
+/* ===== WHY US ===== */
+.whyus-section { background: var(--black); }
+.whyus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+.why-card {
+  text-align: center;
+  padding: 36px 24px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  transition: all 0.3s;
+}
+.why-card:hover { border-color: rgba(10,127,245,0.3); background: rgba(10,127,245,0.04); transform: translateY(-4px); }
+.why-icon-wrap {
+  width: 64px; height: 64px;
+  margin: 0 auto 18px;
+  background: linear-gradient(135deg, var(--blue) 0%, #0550c0 100%);
+  border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+  box-shadow: 0 8px 30px rgba(10,127,245,0.3);
+}
+.why-title { font-size: 1rem; font-weight: 800; margin-bottom: 8px; }
+.why-desc { font-size: 0.82rem; color: var(--white-dim); }
+ 
+/* ===== ORDER SECTION ===== */
+.order-section {
+  background: linear-gradient(180deg, var(--navy) 0%, var(--black) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.order-section::before {
+  content: '';
+  position: absolute;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(10,127,245,0.08) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.order-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.order-info .price-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+.price-main { font-family: var(--font-display); font-size: 3rem; font-weight: 800; color: var(--blue-bright); }
+.price-curr { font-size: 1.1rem; color: var(--white-dim); }
+.order-perks { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+.order-perks li {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.88rem;
+}
+.perk-check {
+  width: 20px; height: 20px;
+  background: var(--blue-soft);
+  border: 1px solid rgba(10,127,245,0.4);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem;
+  color: var(--blue-bright);
+  flex-shrink: 0;
+}
+.wa-order-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #25D366;
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 16px;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.25);
+}
+.wa-order-btn:hover { background: #1ebe5d; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(37,211,102,0.4); }
+ 
+.order-form {
+  background: rgba(8,15,30,0.8);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+.order-form::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--blue), transparent);
+}
+.form-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 6px; }
+.form-sub { font-size: 0.8rem; color: var(--white-dim); margin-bottom: 24px; }
+.form-group { margin-bottom: 16px; }
+.form-label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 7px; color: var(--white-dim); }
+.form-input, .form-select {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 13px 16px;
+  color: var(--white);
+  font-family: var(--font-arabic);
+  font-size: 0.9rem;
+  transition: all 0.25s;
+  outline: none;
+  appearance: none;
+}
+.form-input:focus, .form-select:focus {
+  border-color: var(--blue);
+  background: var(--blue-soft);
+  box-shadow: 0 0 0 3px rgba(10,127,245,0.12);
+}
+.form-input::placeholder { color: rgba(240,244,255,0.3); }
+.form-select { cursor: pointer; }
+.form-select option { background: var(--navy); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.order-product-compact {
+  border: 1px solid rgba(10,127,245,0.18);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(10,127,245,0.1), rgba(255,255,255,0.025));
+  padding: 12px;
+}
+.order-product-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.order-product-mini-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--blue-bright);
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+.qty-wrapper { display: flex; align-items: center; gap: 12px; }
+.qty-btn {
+  width: 40px; height: 40px;
+  background: var(--blue-soft);
+  border: 1px solid rgba(10,127,245,0.3);
+  border-radius: 8px;
+  color: var(--blue-bright);
+  font-size: 1.2rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.qty-btn:hover { background: rgba(10,127,245,0.25); }
+.qty-display {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+.btn-submit {
+  width: 100%;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-arabic);
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.25s;
+  margin-top: 8px;
+  box-shadow: 0 0 30px var(--blue-glow);
+  position: relative;
+  overflow: hidden;
+}
+.btn-submit:hover { background: var(--blue-bright); transform: translateY(-2px); box-shadow: 0 6px 40px rgba(10,127,245,0.5); }
+ 
+/* ===== FAQ ===== */
+.faq-section { background: var(--navy); }
+.faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.faq-item {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.faq-item.open { border-color: rgba(10,127,245,0.3); }
+.faq-q {
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+  gap: 16px;
+  user-select: none;
+}
+.faq-q:hover { color: var(--blue-bright); }
+.faq-arrow {
+  width: 28px; height: 28px;
+  background: var(--blue-soft);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  font-size: 0.8rem;
+}
+.faq-item.open .faq-arrow { transform: rotate(180deg); background: rgba(10,127,245,0.25); }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), padding 0.35s;
+  font-size: 0.88rem;
+  color: var(--white-dim);
+  padding: 0 24px;
+  line-height: 1.8;
+}
+.faq-item.open .faq-a { max-height: 300px; padding: 0 24px 20px; }
+ 
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--navy);
+  border-top: 1px solid var(--glass-border);
+  padding: 48px clamp(16px, 5vw, 80px) 24px;
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--glass-border);
+  margin-bottom: 24px;
+}
+.footer-brand-desc { font-size: 0.82rem; color: var(--white-dim); margin: 12px 0 20px; line-height: 1.8; }
+.footer-social { display: flex; gap: 10px; }
+.social-btn {
+  width: 36px; height: 36px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem;
+  color: var(--white-dim);
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.social-btn:hover { background: var(--blue-soft); border-color: rgba(10,127,245,0.3); color: var(--blue-bright); }
+.footer-col-title { font-size: 0.85rem; font-weight: 800; margin-bottom: 16px; color: var(--white); }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 0.8rem; color: var(--white-dim); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--blue-bright); }
+.footer-trust { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; justify-content: center; margin-bottom: 20px; }
+.trust-badge {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--white-dim);
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--white-dim);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+ 
+/* ===== STICKY MOBILE CTA ===== */
+.sticky-cta {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 200;
+  background: rgba(5,8,16,0.95);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--glass-border);
+  padding: 12px 16px;
+  gap: 10px;
+}
+.sticky-cta a {
+  flex: 1;
+  text-align: center;
+  padding: 13px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.sticky-order { background: var(--blue); color: #fff; box-shadow: 0 0 20px var(--blue-glow); }
+.sticky-whatsapp { background: #25D366; color: #fff; }
+ 
+/* ===== MODAL ===== */
+.tech-modal-overlay {
+  position: fixed !important;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(4, 12, 24, 0.75) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 9999 !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.tech-modal-overlay.open {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+.tech-modal-content {
+  background: #0b1523 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 16px !important;
+  padding: 24px !important;
+  width: 90% !important;
+  max-width: 550px !important;
+  position: relative !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6) !important;
+  text-align: center !important;
+  direction: ltr !important;
+}
+.modal-close-btn {
+  position: absolute !important;
+  top: 12px; right: 15px;
+  background: none !important;
+  border: none !important;
+  color: #fff !important;
+  font-size: 1.8rem !important;
+  cursor: pointer !important;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+.modal-close-btn:hover { opacity: 1; }
+.modal-title {
+  color: #fff;
+  margin-top: 0; margin-bottom: 15px;
+  font-size: 1.1rem; font-weight: 600; letter-spacing: 0.5px;
+}
+.modal-tabs {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  margin-bottom: 16px !important;
+}
+.modal-tab-btn {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  padding: 8px 20px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  font-weight: bold !important;
+  font-size: 0.8rem !important;
+  transition: all 0.2s ease;
+}
+.modal-tab-btn.active {
+  border-color: #0a7ff5 !important;
+  background: rgba(10, 127, 245, 0.15) !important;
+  color: #0a7ff5 !important;
+}
+.modal-image-container {
+  width: 100% !important;
+  max-height: 420px !important;
+  overflow-y: auto !important;
+  border-radius: 8px !important;
+  background: #111e31 !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  padding: 10px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 15px !important;
+  transition: opacity 0.25s ease;
+}
+.modal-tech-img {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(255, 255, 255, 0.03) !important;
+}
+.modal-image-container::-webkit-scrollbar { width: 6px !important; }
+.modal-image-container::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.01) !important; }
+.modal-image-container::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12) !important; border-radius: 10px !important; }
+.modal-image-container::-webkit-scrollbar-thumb:hover { background: rgba(10, 127, 245, 0.4) !important; }
+ 
+/* ===== ANIMATIONS ===== */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
+@keyframes ringPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.03); }
+}
+.reveal {
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+ 
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .hero-inner, .problem-grid, .order-inner, .footer-top {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .hero-visual { order: -1; }
+  .stat-left, .stat-right { display: none; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .topbar-items { gap: 12px; font-size: 0.7rem; }
+  .topbar-item:nth-child(n+3) { display: none; }
+  .hero-ctas { flex-direction: column; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+  .hero-trust { gap: 12px; }
+  .features-grid { grid-template-columns: 1fr 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .order-product-row { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .sticky-cta { display: flex; }
+  body { padding-bottom: 72px; }
+}
+ 
+@media (max-width: 600px) {
+  .sidebar { width: 240px; }
+  .sidebar-footer { padding-bottom: 52px; }
+}
+</style>
+</head>
+<body>
+ 
+<!-- ===== SIDEBAR OVERLAY ===== -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+ 
+<!-- ===== SIDEBAR ===== -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-glow"></div>
+  <div class="sidebar-header">
+    <div class="sidebar-logo-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    </div>
+    <div class="sidebar-logo-text">SH SMART<span> DZ</span></div>
+  </div>
+ 
+  <div class="sidebar-label">Navigation</div>
+ 
+  <nav class="sidebar-nav">
+    <a class="sidebar-link" onclick="scrollToSection('hero')">
+      <div class="sl-icon">🏠</div>
+      <span class="sl-text">الرئيسية — Accueil</span>
+      <span class="sl-arrow">◂</span>
+    </a>
+    <a class="sidebar-link" onclick="scrollToSection('problem')">
+      <div class="sl-icon">⚡</div>
+      <span class="sl-text">المشكل — Problème</span>
+      <span class="sl-arrow">◂</span>
+    </a>
+    <a class="sidebar-link" onclick="scrollToSection('features')">
+      <div class="sl-icon">🛡</div>
+      <span class="sl-text">المزايا — Fonctionnalités</span>
+      <span class="sl-arrow">◂</span>
+    </a>
+    <a class="sidebar-link" onclick="scrollToSection('order')">
+      <div class="sl-icon">🛒</div>
+      <span class="sl-text">الطلب — Commander</span>
+      <span class="sl-arrow">◂</span>
+    </a>
+    <a class="sidebar-link" onclick="scrollToSection('faq-section')">
+      <div class="sl-icon">❓</div>
+      <span class="sl-text">الأسئلة — FAQ</span>
+      <span class="sl-arrow">◂</span>
+    </a>
+  </nav>
+ 
+  <div class="sidebar-footer">
+    <a href="https://wa.me/213541773930" class="sidebar-wa-btn" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2c-5.514 0-9.999 4.486-9.999 10 0 1.76.462 3.41 1.268 4.847L2 22l5.293-1.238A9.951 9.951 0 0012 22c5.514 0 10-4.486 10-10S17.513 2 11.999 2z"/></svg>
+      تواصل عبر واتساب
+    </a>
+  </div>
+</aside>
+ 
+<!-- ===== SIDEBAR TOGGLE BUTTON ===== -->
+<button class="sidebar-toggle" id="sidebar-toggle" aria-label="القائمة الجانبية">
+  <div class="toggle-bar"></div>
+  <div class="toggle-bar"></div>
+  <div class="toggle-bar"></div>
+</button>
+ 
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="#" class="logo">
+    <div class="logo-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    </div>
+    <span class="logo-text">SH SMART<span> DZ</span></span>
+  </a>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-bg-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="badge-dot"></div>
+        متوفر الآن — Disponible immédiatement
+      </div>
+      <h1 class="hero-headline">
+        حماية <span class="accent">كاملة</span> لأجهزتك<br>
+        من انقطاع الكهرباء<br>
+        <span style="font-size:0.65em; font-weight:500; color:var(--white-dim)">Onduleur Online Rackable — Protection Totale</span>
+      </h1>
+      <p class="hero-sub">
+        Onduleur Online double conversion de haute qualité. Protège vos serveurs, PCs et équipements critiques contre les coupures, surtensions et instabilités du réseau électrique algérien.
+      </p>
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="scrollToSection('order')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
+          اطلب الآن — Commander
+        </button>
+        <a href="#features" class="btn-secondary">
+          Voir les Fonctionnalités ↓ 
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><span class="trust-icon">✦</span>ضمان سنتين</div>
+        <div class="trust-item"><span class="trust-icon">✦</span>69 ولاية</div>
+        <div class="trust-item"><span class="trust-icon">✦</span>الدفع عند الاستلام</div>
+        <div class="trust-item"><span class="trust-icon">✦</span>دعم تقني</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+  <div class="product-showcase">
+    <div class="type-selector">
+      <button class="type-btn" data-type="tour">TOUR &#9650;</button>
+      <button class="type-btn" data-type="rackable">RACKABLE &#9632;</button>
+    </div>
+<div class="capacity-selector fade-up delay-3" id="kva-selector">
+  <button class="kva-btn" data-type="rackable" data-kva="1kva">1 KVA</button>
+  <button class="kva-btn" data-type="rackable" data-kva="2kva">2 KVA</button>
+  <button class="kva-btn" data-type="rackable" data-kva="3kva">3 KVA</button>
+  <button class="kva-btn" data-type="tour" data-kva="3kva">3 KVA</button>
+  <button class="kva-btn" data-type="tour" data-kva="6kva">6 KVA</button>
+  <button class="kva-btn" data-type="tour" data-kva="10kva">10 KVA</button>
+</div>
+    <div class="product-3d-wrapper">
+      <div class="ups-render">
+        <img id="ups-product-img" src="ups_rackable_high_res.png" alt="Icon UPS" class="ups-real-image">
+      </div>
+      <div class="specs-strip" id="specs-strip">
+        <div class="spec">
+          <div class="spec-power" id="spec-power">-</div>
+          <div class="spec-lbl">Puissance</div>
+        </div>
+        <div class="spec">
+          <div class="spec-battery" id="spec-battery">-</div>
+          <div class="spec-lbl">Batterie</div>
+        </div>
+        <div class="spec">
+          <div class="spec-eco" id="spec-eco">-</div>
+          <div class="spec-lbl">Mode ECO</div>
+        </div>
+      </div>
+      <div class="product-actions">
+        <button class="btn btn-compact">Fiche Tech</button>
+        <button class="btn btn-primary" onclick="scrollToSection('order')">Commander maintenant</button>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</section>
+ 
+<!-- MODAL -->
+<div class="tech-modal-overlay" id="tech-modal">
+  <div class="tech-modal-content">
+    <button class="modal-close-btn">&times;</button>
+    <h3 class="modal-title">Spécifications Techniques</h3>
+    <div class="modal-tabs">
+      <button class="modal-tab-btn active" data-tab="rackable">RACK</button>
+      <button class="modal-tab-btn" data-tab="tour">TOUR</button>
+    </div>
+    <div class="modal-image-container" id="modal-img-gallery"></div>
+  </div>
+</div>
+ 
+<!-- PROBLEM / SOLUTION -->
+<section class="section problem-section" id="problem">
+  <div class="section-inner">
+    <div class="problem-grid">
+      <div>
+        <div class="section-label">المشكل — Le Problème</div>
+        <h2 class="section-title">الكهرباء في الجزائر<br><span class="accent">مشكلة يومية</span></h2>
+        <p class="section-sub">انقطاعات متكررة، توترات غير مستقرة، ارتفاعات مفاجئة تتلف أجهزتك الغالية.</p>
+        <div class="problem-cards">
+          <div class="problem-card">
+            <div class="problem-icon">⚡</div>
+            <div class="problem-text">
+              <h4>انقطاع الكهرباء المتكرر</h4>
+              <p>Coupures fréquentes qui causent des pertes de données et endommagent le matériel.</p>
+            </div>
+          </div>
+          <div class="problem-card">
+            <div class="problem-icon">📉</div>
+            <div class="problem-text">
+              <h4>تذبذب الجهد الكهربائي</h4>
+              <p>Variations de tension qui réduisent la durée de vie de vos équipements.</p>
+            </div>
+          </div>
+          <div class="problem-card">
+            <div class="problem-icon">💥</div>
+            <div class="problem-text">
+              <h4>الارتفاعات المفاجئة</h4>
+              <p>Surtensions dangereuses pouvant griller vos cartes mères et alimentations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="solution-panel">
+        <div style="font-size:2.5rem;margin-bottom:16px;">🛡️</div>
+        <div class="section-label">الحل — La Solution</div>
+        <div class="solution-headline">Onduleur icon<br>يحمي بشكل <span class="accent">مستمر</span></div>
+        <p class="solution-desc">Technologie Online double conversion — votre équipement fonctionne toujours sur alimentation batterie parfaitement régulée, sans aucune interruption même en cas de coupure totale.</p>
+        <ul class="solution-points">
+          <li>حماية فورية بدون انقطاع — Protection instantanée 0ms</li>
+          <li>تثبيت الجهد الكهربائي تلقائياً — Régulation automatique de tension</li>
+          <li>تصفية التشويش الكهربائي — Filtrage des harmoniques</li>
+          <li>احتياطي بطاريات طويل — Autonomie batterie étendue</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FEATURES -->
+<section class="section features-section reveal" id="features">
+  <div class="section-inner">
+    <div class="text-center">
+      <div class="section-label">المزايا — Fonctionnalités</div>
+      <h2 class="section-title">تقنية <span class="accent">احترافية</span> بمعايير عالمية</h2>
+      <p class="section-sub">Conçu pour les environnements exigeants : salles serveurs, cybercafés, bureaux, et télécoms.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Online Double Conversion</div>
+        <div class="feature-desc">تقنية التحويل المزدوج — zéro interruption même lors de coupure totale. Temps de commutation : 0ms.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Écran LCD Intelligent</div>
+        <div class="feature-desc">شاشة LCD تعرض كل المعلومات: tension, charge, autonomie, état batterie en temps réel.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔇</div>
+        <div class="feature-title">Silencieux & Compact</div>
+        <div class="feature-desc">صامت تقريباً ومدمج — مثالي للمكاتب والمحلات. Ventilation intelligente ultra-silencieuse.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔋</div>
+        <div class="feature-title">Batteries Longue Durée</div>
+        <div class="feature-desc">بطاريات AGM عالية الجودة — batteries haute capacité remplaçables à chaud sans interruption.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛡</div>
+        <div class="feature-title">Protection Totale</div>
+        <div class="feature-desc">حماية من: surtensions, sous-tensions, fréquence instable, interférences EMI/RFI.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">♻️</div>
+        <div class="feature-title">Éco-Intelligent</div>
+        <div class="feature-desc">وضع توفير الطاقة — mode ECO pour réduire la consommation jusqu'à 30% en utilisation légère.</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ORDER SECTION -->
+<section class="section order-section" id="order">
+  <div class="section-inner">
+    <div class="order-inner">
+      <div class="order-info">
+        <div style="text-align: center; padding-bottom: 10px;">
+          <div class="section-label">الطلب — Commander</div>
+        </div>
+        <h2 class="section-title" style="margin-bottom:20px;">احصل على<br><span class="accent">PowerShield Pro</span></h2>
+        <p style="text-align:center;font-size:0.72rem;color:var(--white-dim);margin-top:10px;">عبر الواتساب ←</p>
+        <a href="https://wa.me/213500000000?text=Bonjour%2C%20je%20veux%20commander%20PowerShield%20Pro" class="wa-order-btn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2c-5.514 0-9.999 4.486-9.999 10 0 1.76.462 3.41 1.268 4.847L2 22l5.293-1.238A9.951 9.951 0 0012 22c5.514 0 10-4.486 10-10S17.513 2 11.999 2z"/></svg>
+          اطلب عبر واتساب الآن
+        </a>
+        <p style="text-align:center;font-size:0.72rem;color:var(--white-dim);margin-top:18px;">أو أكمل نموذج الطلب ←</p>
+      </div>
+ 
+      <div class="order-form">
+        <div class="form-title">نموذج الطلب — Formulaire de Commande</div>
+        <div class="form-sub">أكمل بياناتك وسنتصل بك لتأكيد الطلب خلال ساعات</div>
+        <div class="form-group">
+          <label class="form-label">الاسم الكامل — Nom Complet *</label>
+          <input type="text" class="form-input" id="customer-name" placeholder="الاسم واللقب" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">رقم الهاتف — Numéro de Téléphone *</label>
+          <input type="tel" class="form-input" id="customer-phone" placeholder="05XX XX XX XX" dir="ltr" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">الولاية — Wilaya *</label>
+            <select class="form-select" id="wilaya-select">
+              <option value="">تحميل الولايات...</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">البلدية — Commune *</label>
+            <select class="form-select" id="commune-select" disabled>
+              <option value="">اختر الولاية أولاً...</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">العنوان التفصيلي — Adresse Complète</label>
+          <input type="text" class="form-input" id="customer-address" placeholder="الحي، الشارع، الرقم...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">اختر المنتج — Produit *</label>
+          <div class="order-product-compact">
+            <div class="order-product-row">
+              <div>
+                <span class="order-product-mini-label">Type</span>
+                <select class="form-select" id="order-product-type">
+                  <option value="rackable">Rackable</option>
+                  <option value="tour">Tour</option>
+                </select>
+              </div>
+              <div>
+                <span class="order-product-mini-label">KVA</span>
+                <select class="form-select" id="order-product-kva"></select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">الكمية — Quantité</label>
+          <div class="qty-wrapper">
+            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+            <div class="qty-display" id="qtyDisplay">1</div>
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+        </div>
+        <button class="btn-submit" onclick="submitOrder()">
+          Confirmer la Commande 
+        </button>
+        <p style="text-align:center;font-size:0.72rem;color:var(--white-dim);margin-top:12px;">
+          🔒 بياناتك آمنة ومحمية — سيتصل بك فريقنا لتأكيد الطلب
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FAQ -->
+<section class="section faq-section reveal" id="faq-section">
+  <div class="section-inner">
+    <div class="text-center">
+      <div class="section-label">الأسئلة الشائعة — FAQ</div>
+      <h2 class="section-title">أسئلة <span class="accent">نتلقاها دائماً</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">
+          ما هي مدة التوصيل في الجزائر؟ — Quel est le délai de livraison ?
+          <div class="faq-arrow">▾</div>
+        </div>
+        <div class="faq-a">التوصيل يتم خلال 2 إلى 5 أيام عمل لجميع الولايات الـ69. الولايات الكبرى كالجزائر العاصمة، وهران، قسنطينة وعنابة تستلم عادةً في 2-3 أيام. سيتواصل معك فريقنا لتحديد موعد التسليم.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          هل الدفع يكون فقط عند الاستلام؟ — Le paiement se fait uniquement à la livraison ?
+          <div class="faq-arrow">▾</div>
+        </div>
+        <div class="faq-a">نعم، الدفع 100% عند الاستلام. لا حاجة لأي دفعة مقدمة. تستلم المنتج وتتفقده بنفسك قبل الدفع. هذا ضمان لحقك كمشترٍ.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          كم تدوم البطاريات في حالة انقطاع الكهرباء؟ — Quelle est l'autonomie batterie ?
+          <div class="faq-arrow">▾</div>
+        </div>
+        <div class="faq-a">بحمولة 50% (حوالي 1500W): مدة الاحتياط تتراوح بين 15 و20 دقيقة. يكفي لإنهاء أعمالك وإيقاف الأجهزة بشكل آمن. يمكن توصيل وحدات بطاريات خارجية إضافية لمدة أطول.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          هل التركيب سهل؟ هل تحتاج لتقنيين متخصصين؟
+          <div class="faq-arrow">▾</div>
+        </div>
+        <div class="faq-a">التركيب بسيط جداً. الجهاز جاهز للاستخدام، تصله بالكهرباء وتربط أجهزتك به. إذا احتجت للتركيب في راك سيرفرز، فريق الدعم التقني متاح عبر واتساب لمساعدتك خطوة بخطوة.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          ما هو شمل الضمان؟ — Que couvre la garantie ?
+          <div class="faq-arrow">▾</div>
+        </div>
+        <div class="faq-a">الضمان 2 سنوات كامل على الجهاز بما فيه القطع الكهربائية والإلكترونية. البطاريات مضمونة لمدة 6 أشهر (استهلاك طبيعي مستثنى). في حالة أي عطل، نرسل بديلاً أو نصلح الجهاز.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          ما الفرق بين Online UPS وOffline UPS ؟
+          <div class="faq-arrow">▾</div>
+        </div>
+        <div class="faq-a">الـ Online UPS يشغّل أجهزتك دائماً عبر البطاريات المشحونة باستمرار — وقت التحويل عند الانقطاع: 0 ميلي ثانية (صفر). الـ Offline UPS يحتاج 4-8ms للتحويل مما قد يؤثر على السيرفرات والأجهزة الحساسة. PowerShield Pro هو Online لأقصى حماية.</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="#" class="logo" style="display:inline-flex;margin-bottom:12px;">
+          <div class="logo-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <span class="logo-text" style="margin-right:10px;">Power<span>Shield</span></span>
+        </a>
+        <p class="footer-brand-desc">متخصصون في حلول الطاقة الاحتياطية وحماية الأجهزة في الجزائر. منتجات عالية الجودة بضمان رسمي وتوصيل لجميع الولايات.</p>
+      </div>
+    </div>
+    <div class="footer-trust">
+      <div class="trust-badge">🚚 Livraison 69W</div>
+      <div class="trust-badge">💳 COD</div>
+      <div class="trust-badge">🛡 Garantie 2 ans</div>
+      <div class="trust-badge">✅ Produit Officiel</div>
+      <div class="trust-badge">📞 Support WhatsApp</div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 PowerShield Algeria — Tous droits réservés</span>
+      <span>جميع الحقوق محفوظة — صُنع بـ ❤️ في الجزائر 🇩🇿</span>
+    </div>
+  </div>
+</footer>
+ 
+<script src="js/algeria-cities.js"></script>
+<script>
+// ===== SIDEBAR =====
+const sidebarToggle = document.getElementById('sidebar-toggle');
+const sidebar = document.getElementById('sidebar');
+const sidebarOverlay = document.getElementById('sidebar-overlay');
+ 
+function openSidebar() {
+  sidebar.classList.add('open');
+  sidebarOverlay.classList.add('open');
+  sidebarToggle.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  sidebarOverlay.classList.remove('open');
+  sidebarToggle.classList.remove('open');
+  document.body.style.overflow = '';
+}
+sidebarToggle.addEventListener('click', () => {
+  sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+});
+sidebarOverlay.addEventListener('click', closeSidebar);
+ 
+function scrollToSection(id) {
+  closeSidebar();
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 300);
+}
+ 
+// ===== PRODUCT SELECTOR =====
+(function () {
+  let isInitialized = false;
+  let currentType = null;
+  let currentKva = null;
+ 
+  const productsData = {
+    'tour': {
+      '3kva': { label: '3 KVA', image: '3tour.png', power: '2 700 W', battery: '6 × 9 Ah', eco: '≥ 97%' },
+      '6kva': { label: '6 KVA', image: '3tour.png', power: '5 400 W', battery: '16 × 7 Ah', eco: '≥ 98%' },
+      '10kva': { label: '10 KVA', image: '3tour.png', power: '9 000 W', battery: '16 × 9 Ah', eco: '≥ 98%' }
+    },
+    'rackable': {
+      '1kva': { label: '1 KVA', image: 'KVA123.png', power: '900 W', battery: '2 × 9 Ah', eco: '≥ 95%' },
+      '2kva': { label: '2 KVA', image: 'KVA123.png', power: '1 800 W', battery: '4 × 9 Ah', eco: '≥ 96%' },
+      '3kva': { label: '3 KVA', image: 'KVA123.png', power: '2 700 W', battery: '6 × 9 Ah', eco: '≥ 97%' }
+    }
+  };
+ 
+  function handleTypeSelection(typeStr) {
+    document.querySelectorAll('.type-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.type === typeStr);
+    });
+    currentType = typeStr;
+    document.querySelectorAll('.kva-btn').forEach(btn => {
+      btn.style.display = btn.dataset.type === typeStr ? '' : 'none';
+    });
+    const firstVisibleKvaBtn = document.querySelector(`.kva-btn[data-type="${typeStr}"]`);
+    if (firstVisibleKvaBtn) handleKvaSelection(firstVisibleKvaBtn.dataset.kva);
+  }
+ 
+  function handleKvaSelection(kvaStr) {
+    if (!currentType) return;
+    document.querySelectorAll('.kva-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.type === currentType && btn.dataset.kva === kvaStr);
+    });
+    currentKva = kvaStr;
+    updateProductDisplay();
+  }
+ 
+  function updateProductDisplay() {
+    if (!currentType || !currentKva) return;
+    const data = productsData[currentType][currentKva];
+    if (!data) return;
+    const imgElement = document.getElementById('ups-product-img');
+    if (imgElement) {
+      imgElement.classList.add('image-fade-out');
+      setTimeout(() => {
+        imgElement.src = data.image;
+        imgElement.classList.remove('image-fade-out');
+      }, 300);
+    }
+    const powerEl = document.getElementById('spec-power');
+    const batteryEl = document.getElementById('spec-battery');
+    const ecoEl = document.getElementById('spec-eco');
+    if(powerEl) powerEl.textContent = data.power;
+    if(batteryEl) batteryEl.textContent = data.battery;
+    if(ecoEl) ecoEl.textContent = data.eco;
+  }
+ 
+  function initEvents() {
+    document.addEventListener('click', (event) => {
+      const typeBtn = event.target.closest('.type-btn');
+      if (typeBtn) { handleTypeSelection(typeBtn.dataset.type); return; }
+      const kvaBtn = event.target.closest('.kva-btn');
+      if (kvaBtn) { handleKvaSelection(kvaBtn.dataset.kva); return; }
+    });
+  }
+ 
+  function initPage() {
+    if (isInitialized) return;
+    isInitialized = true;
+    initEvents();
+    handleTypeSelection('rackable');
+  }
+ 
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPage, { once: true });
+  } else {
+    initPage();
+  }
+}());
+ 
+// ===== MODAL =====
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('tech-modal');
+  const galleryContainer = document.getElementById('modal-img-gallery');
+  if (!modal || !galleryContainer) return;
+ 
+  const galleryData = {
+    'rackable': ['123-ONLINE-RACK_page1.png', '123-ONLINE-RACK_page2.png'],
+    'tour': ['6-10-ONLINE-TOUR_page1.png', '6-10-ONLINE-TOUR_page2.png']
+  };
+ 
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.btn-compact')) {
+      modal.classList.add('open');
+      switchModalTab('rackable');
+    }
+    if (e.target.closest('.modal-close-btn') || e.target === modal) {
+      modal.classList.remove('open');
+    }
+    const tabBtn = e.target.closest('.modal-tab-btn');
+    if (tabBtn) switchModalTab(tabBtn.dataset.tab);
+  });
+ 
+  function switchModalTab(typeStr) {
+    document.querySelectorAll('.modal-tab-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.tab === typeStr);
+    });
+    galleryContainer.style.opacity = '0';
+    setTimeout(() => {
+      galleryContainer.innerHTML = '';
+      const imagesArray = galleryData[typeStr] || [];
+      imagesArray.forEach(imgSrc => {
+        const imgElement = document.createElement('img');
+        imgElement.src = imgSrc;
+        imgElement.alt = 'Technical Spec';
+        imgElement.className = 'modal-tech-img';
+        imgElement.onerror = () => { imgElement.style.display = 'none'; };
+        galleryContainer.appendChild(imgElement);
+      });
+      galleryContainer.style.opacity = '1';
+      galleryContainer.scrollTop = 0;
+    }, 150);
+  }
+});
+ 
+// ===== FAQ =====
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.faq-q').forEach(question => {
+    question.addEventListener('click', () => {
+      const item = question.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      // Close all open items
+      document.querySelectorAll('.faq-item.open').forEach(openItem => {
+        openItem.classList.remove('open');
+      });
+      // Open clicked item if it was closed
+      if (!isOpen) {
+        item.classList.add('open');
+      }
+    });
+  });
+});
+ 
+// ===== WILAYA / COMMUNE =====
+let wilayasByCode = {};
+
+function buildWilayaData() {
+  const rows = Array.isArray(window.ALGERIA_CITIES) ? window.ALGERIA_CITIES : [];
+  wilayasByCode = rows.reduce((acc, item) => {
+    const code = String(item.wilaya_code).padStart(2, '0');
+    if (!acc[code]) {
+      acc[code] = {
+        code,
+        nameFr: item.wilaya_name_fr,
+        nameAr: item.wilaya_name,
+        communes: []
+      };
+    }
+    acc[code].communes.push({
+      id: item.id,
+      nameFr: item.commune_name_fr,
+      nameAr: item.commune_name,
+      dairaFr: item.daira_name_fr,
+      dairaAr: item.daira_name
+    });
+    return acc;
+  }, {});
+
+  Object.values(wilayasByCode).forEach(wilaya => {
+    wilaya.communes.sort((a, b) => a.nameFr.localeCompare(b.nameFr, 'fr'));
+  });
+}
+
+function fillWilayas() {
+  const wilayaSelect = document.getElementById('wilaya-select');
+  const communeSelect = document.getElementById('commune-select');
+  if (!wilayaSelect || !communeSelect) return;
+
+  const wilayas = Object.values(wilayasByCode).sort((a, b) => Number(a.code) - Number(b.code));
+  wilayaSelect.innerHTML = '<option value="">اختر الولاية...</option>';
+  wilayas.forEach(wilaya => {
+    const opt = document.createElement('option');
+    opt.value = wilaya.code;
+    opt.textContent = `${wilaya.code} - ${wilaya.nameFr} / ${wilaya.nameAr}`;
+    wilayaSelect.appendChild(opt);
+  });
+
+  wilayaSelect.addEventListener('change', () => fillCommunes(wilayaSelect.value));
+}
+
+function fillCommunes(wilayaCode) {
+  const communeSelect = document.getElementById('commune-select');
+  if (!communeSelect) return;
+
+  const wilaya = wilayasByCode[wilayaCode];
+  communeSelect.innerHTML = '';
+  if (!wilaya) {
+    communeSelect.disabled = true;
+    communeSelect.innerHTML = '<option value="">اختر الولاية أولاً...</option>';
+    return;
+  }
+
+  communeSelect.disabled = false;
+  communeSelect.innerHTML = '<option value="">اختر البلدية...</option>';
+  wilaya.communes.forEach(commune => {
+    const opt = document.createElement('option');
+    opt.value = commune.nameFr;
+    opt.dataset.nameAr = commune.nameAr;
+    opt.dataset.dairaFr = commune.dairaFr;
+    opt.dataset.dairaAr = commune.dairaAr;
+    opt.textContent = `${commune.nameFr} / ${commune.nameAr}`;
+    communeSelect.appendChild(opt);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  buildWilayaData();
+  fillWilayas();
+});
+
+// ===== ORDER PRODUCT PICKER =====
+const orderProductOptions = {
+  rackable: ['1 KVA', '2 KVA', '3 KVA'],
+  tour: ['3 KVA', '6 KVA', '10 KVA']
+};
+
+function fillOrderKvaOptions() {
+  const typeSelect = document.getElementById('order-product-type');
+  const kvaSelect = document.getElementById('order-product-kva');
+  if (!typeSelect || !kvaSelect) return;
+
+  const selectedType = typeSelect.value;
+  kvaSelect.innerHTML = '';
+  orderProductOptions[selectedType].forEach(kva => {
+    const opt = document.createElement('option');
+    opt.value = kva;
+    opt.textContent = kva;
+    kvaSelect.appendChild(opt);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  fillOrderKvaOptions();
+  document.getElementById('order-product-type')?.addEventListener('change', fillOrderKvaOptions);
+});
+ 
+// ===== QTY =====
+let qty = 1;
+function changeQty(delta) {
+  qty = Math.max(1, qty + delta);
+  document.getElementById('qtyDisplay').textContent = qty;
+}
+ 
+function submitOrder() {
+  const nameInput = document.getElementById('customer-name');
+  const phoneInput = document.getElementById('customer-phone');
+  const wilayaSelect = document.getElementById('wilaya-select');
+  const communeSelect = document.getElementById('commune-select');
+  const addressInput = document.getElementById('customer-address');
+  const productTypeSelect = document.getElementById('order-product-type');
+  const productKvaSelect = document.getElementById('order-product-kva');
+
+  const name = nameInput?.value.trim() || '';
+  const phone = phoneInput?.value.trim() || '';
+  const wilaya = wilayasByCode[wilayaSelect?.value];
+  const communeOption = communeSelect?.selectedOptions?.[0];
+
+  if (!name || !phone || !wilaya || !communeSelect?.value || !productTypeSelect?.value || !productKvaSelect?.value) {
+    alert('يرجى ملء الاسم، الهاتف، الولاية، البلدية واختيار المنتج قبل تأكيد الطلب.');
+    return;
+  }
+
+  const orders = JSON.parse(localStorage.getItem('powershield_orders') || '[]');
+  const productType = productTypeSelect.value;
+  const productKva = productKvaSelect.value;
+  const order = {
+    id: `PS-${Date.now()}`,
+    createdAt: new Date().toISOString(),
+    customer: name,
+    phone,
+    wilayaCode: wilaya.code,
+    wilayaFr: wilaya.nameFr,
+    wilayaAr: wilaya.nameAr,
+    communeFr: communeSelect.value,
+    communeAr: communeOption?.dataset.nameAr || '',
+    dairaFr: communeOption?.dataset.dairaFr || '',
+    address: addressInput?.value.trim() || '',
+    quantity: qty,
+    productType,
+    productKva,
+    status: 'new'
+  };
+
+  orders.unshift(order);
+  localStorage.setItem('powershield_orders', JSON.stringify(orders));
+  alert('شكراً! تم تسجيل طلبك وربطه بلوحة التحكم. سيتصل بك فريقنا قريباً.');
+}
+</script>
+</body>
+</html>
