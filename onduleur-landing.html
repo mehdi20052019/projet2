@@ -2602,6 +2602,240 @@ body{
   }
 }
 
+/* Mini catalogue cards for the horizontal related-products rail */
+.related-products-section{
+  background:
+    radial-gradient(circle at 12% 10%, rgba(192,132,252,.10), transparent 32%),
+    radial-gradient(circle at 82% 28%, rgba(59,130,246,.10), transparent 34%),
+    var(--black);
+  overflow: hidden;
+}
+
+.related-products-grid{
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  padding: 4px 2px 18px;
+  direction: ltr;
+  -webkit-overflow-scrolling: touch;
+}
+
+.related-products-grid::-webkit-scrollbar{ height: 6px; }
+.related-products-grid::-webkit-scrollbar-track{ background: rgba(255,255,255,.06); border-radius: 999px; }
+.related-products-grid::-webkit-scrollbar-thumb{ background: linear-gradient(135deg, #c084fc, #60a5fa); border-radius: 999px; }
+
+.related-product-card{
+  flex: 0 0 clamp(188px, 21vw, 226px);
+  min-height: 318px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  direction: rtl;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025)),
+    linear-gradient(135deg, rgba(17,12,41,.88), rgba(8,9,21,.82));
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  color: var(--white);
+  text-decoration: none;
+  overflow: hidden;
+  position: relative;
+  transition: all .32s cubic-bezier(.4,0,.2,1);
+  scroll-snap-align: start;
+}
+
+.related-product-card::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(135deg, #c084fc, #60a5fa);
+  opacity: .38;
+  transition: opacity .3s;
+}
+
+.related-product-card:hover{
+  transform: translateY(-5px);
+  border-color: rgba(192,132,252,.28);
+  box-shadow: 0 24px 60px rgba(0,0,0,.45);
+}
+
+.related-product-card:hover::before{ opacity: 1; }
+
+.related-product-media{
+  aspect-ratio: 1.3 / 1;
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  background: linear-gradient(135deg, rgba(17,12,41,.9), rgba(8,9,21,.85));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  padding: 10px;
+}
+
+.related-product-media::after{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(192,132,252,.09), transparent 70%);
+}
+
+.related-product-media img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 14px 22px rgba(0,0,0,.38));
+}
+
+.related-product-badge{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  max-width: calc(100% - 20px);
+  background: linear-gradient(135deg, rgba(192,132,252,.9), rgba(59,130,246,.8));
+  color: #fff;
+  font-size: .58rem;
+  font-weight: 800;
+  line-height: 1.2;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.related-product-power{
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 1;
+  background: rgba(0,0,0,.60);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.10);
+  color: rgba(255,255,255,.82);
+  font-size: .62rem;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 6px;
+}
+
+.related-product-body{
+  flex: 1;
+  min-width: 0;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.related-product-kicker{
+  margin-bottom: 5px;
+  color: var(--blue-bright);
+  font-size: .59rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.related-product-title{
+  color: var(--white);
+  font-size: .78rem;
+  font-weight: 900;
+  line-height: 1.35;
+  margin-bottom: 8px;
+  direction: ltr;
+  text-align: left;
+}
+
+.related-product-specs{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.related-product-specs span{
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 6px;
+  padding: 2px 6px;
+  color: var(--muted);
+  font-size: .58rem;
+  font-weight: 800;
+  direction: ltr;
+}
+
+.related-product-footer{
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,.07);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.related-product-price-label{
+  color: var(--muted);
+  font-size: .58rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.related-product-price{
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: .92rem;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.related-product-price small{
+  color: var(--muted);
+  font-family: var(--font-arabic);
+  font-size: .62rem;
+  margin-right: 3px;
+}
+
+.related-product-action{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #c084fc, #60a5fa);
+  color: #fff;
+  border-radius: 10px;
+  padding: 7px 10px;
+  font-size: .7rem;
+  font-weight: 900;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(124,58,237,.25);
+}
+
+@media (max-width: 700px){
+  .related-products-grid{
+    margin-inline: calc(clamp(16px, 5vw, 80px) * -1);
+    padding-inline: clamp(16px, 5vw, 80px);
+  }
+
+  .related-product-card{
+    flex-basis: 204px;
+    min-height: 312px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2621,6 +2855,82 @@ body{
   
 </div>
 
+ 
+<!-- ===== SIDEBAR OVERLAY ===== -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+ 
+<!-- ===== SIDEBAR ===== -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-glow"></div>
+  
+  <div class="sidebar-header-tech">
+    <div class="sidebar-logo-wrap">
+      <div class="sidebar-logo-icon-tech">
+        <svg width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="sb-grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#5a60e8"/>
+              <stop offset="100%" stop-color="#8b5cf6"/>
+            </linearGradient>
+          </defs>
+          <circle cx="18" cy="18" r="14" stroke="url(#sb-grad)" stroke-width="3.2" fill="none" opacity="0.95"/>
+          <circle cx="18" cy="18" r="8.5" stroke="url(#sb-grad)" stroke-width="2.6" fill="none" opacity="0.85"/>
+          <path d="M18 7 A11 11 0 0 0 18 29" stroke="#4f72f0" stroke-width="2.8" fill="none" stroke-linecap="round" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="sidebar-logo-text-tech">SHSMART</span>DZ</div>
+    </div>
+  </div>
+ 
+  <div class="sidebar-label">Navigation</div>
+ 
+  <nav class="sidebar-nav">
+    <a class="sidebar-link" onclick="scrollToSection('hero')">
+      <div class="sl-icon">🏠</div>
+      <span class="sl-text">الرئيسية — Accueil</span>
+      <span class="sl-arrow">◂</span>
+    </a>
+    <a class="sidebar-link" onclick="scrollToSection('problem')">
+      <div class="sl-icon">⚡</div>
+      <span class="sl-text">المشكل — Problème</span>
+      <span class="sl-arrow">◂</span>
+    </a>
+    <a class="sidebar-link" onclick="scrollToSection('features')">
+      <div class="sl-icon">🛡</div>
+      <span class="sl-text">المزايا — Fonctionnalités</span>
+      <span class="sl-arrow">◂</span>
+    </a>
+    <a class="sidebar-link" onclick="scrollToSection('other-products')">
+      <div class="sl-icon">▣</div>
+      <span class="sl-text">منتجات أخرى — Autres</span>
+      <span class="sl-arrow">◂</span>
+    </a>
+    <a class="sidebar-link" onclick="scrollToSection('order')">
+      <div class="sl-icon">🛒</div>
+      <span class="sl-text">الطلب — Commander</span>
+      <span class="sl-arrow">◂</span>
+    </a>
+    <a class="sidebar-link" onclick="scrollToSection('faq-section')">
+      <div class="sl-icon">❓</div>
+      <span class="sl-text">الأسئلة — FAQ</span>
+      <span class="sl-arrow">◂</span>
+    </a>
+  </nav>
+ 
+  <div class="sidebar-footer">
+    <a href="https://wa.me/213541773930" class="sidebar-wa-btn" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2c-5.514 0-9.999 4.486-9.999 10 0 1.76.462 3.41 1.268 4.847L2 22l5.293-1.238A9.951 9.951 0 0012 22c5.514 0 10-4.486 10-10S17.513 2 11.999 2z"/></svg>
+      تواصل عبر واتساب
+    </a>
+  </div>
+</aside>
+ 
+<!-- ===== SIDEBAR TOGGLE BUTTON ===== -->
+<button class="sidebar-toggle" id="sidebar-toggle" aria-label="القائمة الجانبية">
+  <div class="toggle-bar"></div>
+  <div class="toggle-bar"></div>
+  <div class="toggle-bar"></div>
+</button>
  
 
 <!-- ===== HERO ===== -->
@@ -3335,28 +3645,141 @@ padding: 17px 1px 10px;
   <div class="section-inner">
     <div class="text-center">
       <div class="section-label">منتجات أخرى — Autres Produits</div>
-      <h2 class="section-title">حلول إضافية <span class="accent">لنفس الحماية</span></h2>
-      <p class="section-sub" style="text-align: left;">Sélection de produits complémentaires à personnaliser selon votre catalogue.</p>
     </div>
-    <div class="related-products-grid">
-      <a class="related-product-card" href="stabilisateur-landing.html" target="_blank" rel="noopener">
-        <div class="related-product-media">
-          <img src="123kva.avif" alt="Stabilisateur de tension">
-        </div>
+    <div class="related-products-grid" aria-label="Catalogue produits">
+      <a class="related-product-card" href="onduleur-landing_hbm.html">
+        <div class="related-product-media"><img src="10tour.jpg" alt="Onduleur 10KVA Tour HBM"><span class="related-product-badge">طاقة عالية</span><span class="related-product-power">10KVA</span></div>
         <div class="related-product-body">
-          <span class="related-product-kicker">Produit</span>
-          <h3 class="related-product-title">Stabilisateur de tension</h3>
-          <p class="related-product-desc">حل مناسب لحماية الأجهزة الحساسة من اضطراب الجهد الكهربائي.</p>
+          <span class="related-product-kicker">Line Interactive Tour</span>
+          <h3 class="related-product-title">Onduleur 10KVA LINE INTERACTIVE Tour Medical HBM</h3>
+          <div class="related-product-specs"><span>10KVA</span><span>Medical</span><span>Tour</span></div>
+          <div class="related-product-footer"><div><div class="related-product-price-label">السعر TTC</div><div class="related-product-price">225 000 <small>DZD</small></div></div><span class="related-product-action">اطلب</span></div>
         </div>
       </a>
-      <a class="related-product-card" href="batteries-ups-landing.html" target="_blank" rel="noopener">
-        <div class="related-product-media">
-          <img src="610kvaTour.avif" alt="Batteries UPS">
-        </div>
+      <a class="related-product-card" href="onduleur-landing_hbm.html">
+        <div class="related-product-media"><img src="1tour.jpg" alt="Onduleur 1KVA Tour HBM"><span class="related-product-power">1KVA</span></div>
         <div class="related-product-body">
-          <span class="related-product-kicker">Produit</span>
-          <h3 class="related-product-title">Batteries UPS</h3>
-          <p class="related-product-desc">بطاريات ومستلزمات احتياطية لتمديد مدة الحماية حسب الحاجة.</p>
+          <span class="related-product-kicker">Line Interactive Tour</span>
+          <h3 class="related-product-title">Onduleur 1KVA LINE INTERACTIVE Tour Medical HBM</h3>
+          <div class="related-product-specs"><span>1KVA</span><span>Medical</span><span>Tour</span></div>
+          <div class="related-product-footer"><div><div class="related-product-price-label">السعر TTC</div><div class="related-product-price">38 500 <small>DZD</small></div></div><span class="related-product-action">اطلب</span></div>
+        </div>
+      </a>
+      <a class="related-product-card" href="onduleur-landing_hbm.html">
+        <div class="related-product-media"><img src="2tour.jpg" alt="Onduleur 2KVA Tour HBM"><span class="related-product-badge">شائع</span><span class="related-product-power">2KVA</span></div>
+        <div class="related-product-body">
+          <span class="related-product-kicker">Line Interactive Tour</span>
+          <h3 class="related-product-title">Onduleur 2KVA LINE INTERACTIVE Tour Medical HBM</h3>
+          <div class="related-product-specs"><span>2KVA</span><span>Medical</span><span>Tour</span></div>
+          <div class="related-product-footer"><div><div class="related-product-price-label">السعر TTC</div><div class="related-product-price">49 000 <small>DZD</small></div></div><span class="related-product-action">اطلب</span></div>
+        </div>
+      </a>
+      <a class="related-product-card" href="onduleur-landing_hbm.html">
+        <div class="related-product-media"><img src="3tour.jpg" alt="Onduleur 3KVA Tour HBM"><span class="related-product-power">3KVA</span></div>
+        <div class="related-product-body">
+          <span class="related-product-kicker">Line Interactive Tour</span>
+          <h3 class="related-product-title">Onduleur 3KVA LINE INTERACTIVE Tour Medical HBM</h3>
+          <div class="related-product-specs"><span>3KVA</span><span>Medical</span><span>Tour</span></div>
+          <div class="related-product-footer"><div><div class="related-product-price-label">السعر TTC</div><div class="related-product-price">56 500 <small>DZD</small></div></div><span class="related-product-action">اطلب</span></div>
+        </div>
+      </a>
+      <a class="related-product-card" href="onduleur-landing_hbm.html">
+        <div class="related-product-media"><img src="6tour.jpg" alt="Onduleur 6KVA Tour HBM"><span class="related-product-power">6KVA</span></div>
+        <div class="related-product-body">
+          <span class="related-product-kicker">Line Interactive Tour</span>
+          <h3 class="related-product-title">Onduleur 6KVA LINE INTERACTIVE Tour Medical HBM</h3>
+          <div class="related-product-specs"><span>6KVA</span><span>Medical</span><span>Tour</span></div>
+          <div class="related-product-footer"><div><div class="related-product-price-label">السعر TTC</div><div class="related-product-price">160 000 <small>DZD</small></div></div><span class="related-product-action">اطلب</span></div>
+        </div>
+      </a>
+      <a class="related-product-card" href="onduleur-landing_hbm.html">
+        <div class="related-product-media"><img src="3686.jpg" alt="Onduleur HBM UPS 650VA LCD"><span class="related-product-badge">أرخص سعر</span><span class="related-product-power">650VA</span></div>
+        <div class="related-product-body">
+          <span class="related-product-kicker">UPS Compact</span>
+          <h3 class="related-product-title">Onduleur HBM UPS 650VA + Afficheur LCD 2S Prise</h3>
+          <div class="related-product-specs"><span>650VA</span><span>LCD</span><span>Compact</span></div>
+          <div class="related-product-footer"><div><div class="related-product-price-label">السعر TTC</div><div class="related-product-price">6 800 <small>DZD</small></div></div><span class="related-product-action">اطلب</span></div>
+        </div>
+      </a>
+      <a class="related-product-card" href="onduleur-landing_hbm.html">
+        <div class="related-product-media"><img src="3686.jpg" alt="Onduleur HBM UPS 1000VA LCD"><span class="related-product-badge">اقتصادي</span><span class="related-product-power">1KVA</span></div>
+        <div class="related-product-body">
+          <span class="related-product-kicker">UPS Compact</span>
+          <h3 class="related-product-title">Onduleur HBM UPS 1000VA + Afficheur LCD 2S Prise</h3>
+          <div class="related-product-specs"><span>1000VA</span><span>LCD</span><span>Compact</span></div>
+          <div class="related-product-footer"><div><div class="related-product-price-label">السعر TTC</div><div class="related-product-price">13 200 <small>DZD</small></div></div><span class="related-product-action">اطلب</span></div>
+        </div>
+      </a>
+      <a class="related-product-card" href="onduleur-landing_hbm.html">
+        <div class="related-product-media"><img src="3686.jpg" alt="Onduleur HBM UPS 3000VA LCD"><span class="related-product-power">3KVA</span></div>
+        <div class="related-product-body">
+          <span class="related-product-kicker">UPS Compact</span>
+          <h3 class="related-product-title">Onduleur HBM UPS 3000VA + Afficheur LCD 3S + Fan</h3>
+          <div class="related-product-specs"><span>3000VA</span><span>LCD</span><span>Fan</span></div>
+          <div class="related-product-footer"><div><div class="related-product-price-label">السعر TTC</div><div class="related-product-price">50 000 <small>DZD</small></div></div><span class="related-product-action">اطلب</span></div>
+        </div>
+      </a>
+      <a class="related-product-card" href="stabilisateur-landing.html">
+        <div class="related-product-media"><img src="123kva.avif" alt="Stabilisateur HBM 1200VA"><span class="related-product-power">1200VA</span></div>
+        <div class="related-product-body">
+          <span class="related-product-kicker">Stabilisateur</span>
+          <h3 class="related-product-title">Onduleur Stabilisateur HBM 1200VA 3S Prise</h3>
+          <div class="related-product-specs"><span>1200VA</span><span>3 Prises</span><span>Stabilisateur</span></div>
+          <div class="related-product-footer"><div><div class="related-product-price-label">السعر TTC</div><div class="related-product-price">14 500 <small>DZD</small></div></div><span class="related-product-action">اطلب</span></div>
+        </div>
+      </a>
+      <a class="related-product-card" href="stabilisateur-landing.html">
+        <div class="related-product-media"><img src="123kva.avif" alt="Stabilisateur HBM 1500VA"><span class="related-product-power">1500VA</span></div>
+        <div class="related-product-body">
+          <span class="related-product-kicker">Stabilisateur</span>
+          <h3 class="related-product-title">Onduleur Stabilisateur HBM Afficheur 1500VA 4S</h3>
+          <div class="related-product-specs"><span>1500VA</span><span>4 Prises</span><span>LCD</span></div>
+          <div class="related-product-footer"><div><div class="related-product-price-label">السعر TTC</div><div class="related-product-price">19 500 <small>DZD</small></div></div><span class="related-product-action">اطلب</span></div>
+        </div>
+      </a>
+      <a class="related-product-card" href="stabilisateur-landing.html">
+        <div class="related-product-media"><img src="123kva.avif" alt="Stabilisateur HBM 2000VA"><span class="related-product-badge">الأكثر طلبا</span><span class="related-product-power">2000VA</span></div>
+        <div class="related-product-body">
+          <span class="related-product-kicker">Stabilisateur</span>
+          <h3 class="related-product-title">Onduleur Stabilisateur HBM Afficheur 2000VA 4S</h3>
+          <div class="related-product-specs"><span>2000VA</span><span>4 Prises</span><span>LCD</span></div>
+          <div class="related-product-footer"><div><div class="related-product-price-label">السعر TTC</div><div class="related-product-price">24 000 <small>DZD</small></div></div><span class="related-product-action">اطلب</span></div>
+        </div>
+      </a>
+      <a class="related-product-card" href="onduleur-landing_hbm.html">
+        <div class="related-product-media"><img src="2rack.jpg" alt="Onduleur 2KVA Rackable HBM"><span class="related-product-badge">الأكثر مبيعا</span><span class="related-product-power">2KVA</span></div>
+        <div class="related-product-body">
+          <span class="related-product-kicker">Online Rackable</span>
+          <h3 class="related-product-title">Onduleur + LCD 2KVA ON-LINE Rackable HBM</h3>
+          <div class="related-product-specs"><span>2KVA</span><span>Online</span><span>Rackable</span></div>
+          <div class="related-product-footer"><div><div class="related-product-price-label">السعر TTC</div><div class="related-product-price">58 000 <small>DZD</small></div></div><span class="related-product-action">اطلب</span></div>
+        </div>
+      </a>
+      <a class="related-product-card" href="onduleur-landing_hbm.html">
+        <div class="related-product-media"><img src="3rack.jpg" alt="Onduleur 3KVA Rackable HBM"><span class="related-product-power">3KVA</span></div>
+        <div class="related-product-body">
+          <span class="related-product-kicker">Online Rackable</span>
+          <h3 class="related-product-title">Onduleur + LCD 3KVA ON-LINE Rackable HBM</h3>
+          <div class="related-product-specs"><span>3KVA</span><span>Online</span><span>Rackable</span></div>
+          <div class="related-product-footer"><div><div class="related-product-price-label">السعر TTC</div><div class="related-product-price">71 000 <small>DZD</small></div></div><span class="related-product-action">اطلب</span></div>
+        </div>
+      </a>
+      <a class="related-product-card" href="onduleur-landing_hbm.html">
+        <div class="related-product-media"><img src="6rack.jpg" alt="Onduleur 6KVA Rackable HBM"><span class="related-product-power">6KVA</span></div>
+        <div class="related-product-body">
+          <span class="related-product-kicker">Online Rackable</span>
+          <h3 class="related-product-title">Onduleur + LCD 6KVA ON-LINE Rackable HBM</h3>
+          <div class="related-product-specs"><span>6KVA</span><span>Online</span><span>Rackable</span></div>
+          <div class="related-product-footer"><div><div class="related-product-price-label">السعر TTC</div><div class="related-product-price">172 000 <small>DZD</small></div></div><span class="related-product-action">اطلب</span></div>
+        </div>
+      </a>
+      <a class="related-product-card" href="onduleur-landing_hbm.html">
+        <div class="related-product-media"><img src="10rack.jpg" alt="Onduleur 10KVA Rackable HBM"><span class="related-product-badge">Online Double Conversion</span><span class="related-product-power">10KVA</span></div>
+        <div class="related-product-body">
+          <span class="related-product-kicker">Online Rackable</span>
+          <h3 class="related-product-title">Onduleur + LCD 10KVA ON-LINE Rackable HBM</h3>
+          <div class="related-product-specs"><span>10KVA</span><span>Online</span><span>Rackable</span></div>
+          <div class="related-product-footer"><div><div class="related-product-price-label">السعر TTC</div><div class="related-product-price">252 000 <small>DZD</small></div></div><span class="related-product-action">اطلب</span></div>
         </div>
       </a>
     </div>
