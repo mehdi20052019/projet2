@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المنتجات — SH Smart DZ | كتالوج UPS HBM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Cinzel:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #050810; --navy: #080f1e; --navy-mid: #0d1a35;
+  --blue: #1a4b8c; --blue-bright: #3a9ff5; --blue-soft: rgba(10,127,245,0.12);
+  --purple: #7c3aed; --accent: #c084fc; --accent2: #60a5fa;
+  --gold: #f5c518; --white: #f0f4ff; --white-dim: rgba(240,244,255,0.72);
+  --glass: rgba(255,255,255,0.04); --glass-border: rgba(255,255,255,0.08);
+  --muted: #5a7aaa; --text: #e8f0ff;
+  --radius-sm: 12px; --radius-md: 18px; --radius-lg: 28px;
+  --font-arabic: 'Cairo', sans-serif; --font-logo: 'Cinzel', serif;
+  --shadow-card: 0 8px 40px rgba(0,0,0,0.5);
+  --grad-primary: linear-gradient(135deg, #c084fc, #60a5fa);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: var(--font-arabic); line-height: 1.7; overflow-x: hidden; direction: rtl; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 2px; }
+
+/* TOPBAR */
+.topbar { background: linear-gradient(90deg, rgba(124,58,237,.95), rgba(59,130,246,.92), rgba(236,72,153,.90)); padding: 9px 0; text-align: center; font-size: .78rem; font-weight: 600; color: #fff; position: relative; overflow: hidden; }
+.topbar::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent); animation: shimmer 3s infinite; }
+@keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+.topbar-items { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; padding: 0 16px; position: relative; }
+.topbar-item { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+
+/* NAVBAR */
+.navbar { position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 0 clamp(16px, 5vw, 80px); height: 72px; background: rgba(9,7,20,.78); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,.08); box-shadow: 0 8px 40px rgba(0,0,0,.2); }
+.navbar::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: linear-gradient(90deg, transparent, rgba(192,132,252,.75), rgba(34,211,238,.55), transparent); }
+.navbar-inner { max-width: 1200px; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; padding: 8px 14px; border-radius: 12px; transition: all .3s; flex-direction: row-reverse; }
+.logo:hover { transform: translateY(-1px); }
+.logo-icon { width: 38px; height: 38px; background: linear-gradient(135deg, rgba(192,132,252,.95), rgba(59,130,246,.95)); border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(124,58,237,.35); flex-shrink: 0; }
+.logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+.logo-name { font-family: var(--font-logo); font-weight: 700; font-size: 1.1rem; letter-spacing: .05em; background: linear-gradient(135deg, #fff, #b3d9ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.logo-tagline { font-size: .6rem; color: var(--accent); font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+.nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+.nav-links a { display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 10px; text-decoration: none; color: var(--white-dim); font-size: .85rem; font-weight: 600; transition: all .22s; }
+.nav-links a:hover { color: var(--white); background: rgba(255,255,255,.06); }
+.nav-links a.active { color: var(--accent); background: rgba(192,132,252,.08); }
+.nav-cta { display: flex; align-items: center; gap: 10px; }
+.btn-wa-nav { display: flex; align-items: center; gap: 7px; background: rgba(37,211,102,.12); border: 1px solid rgba(37,211,102,.28); padding: 9px 18px; border-radius: 999px; color: #25d366; font-weight: 700; font-size: .82rem; text-decoration: none; transition: all .22s; }
+.btn-wa-nav:hover { background: rgba(37,211,102,.22); transform: translateY(-1px); }
+.nav-mobile-btn { display: none; background: none; border: 1px solid rgba(255,255,255,.12); color: var(--white); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 1.1rem; }
+
+/* PAGE HEADER */
+.page-header { background: var(--navy); padding: clamp(48px,7vw,80px) clamp(16px,5vw,80px) clamp(40px,6vw,70px); position: relative; overflow: hidden; }
+.page-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(124,58,237,.15), transparent 50%), radial-gradient(circle at 20% 60%, rgba(236,72,153,.08), transparent 30%); pointer-events: none; }
+.page-header-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 48px 48px; opacity: .25; pointer-events: none; }
+.page-header-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+.breadcrumb { display: flex; align-items: center; gap: 8px; font-size: .78rem; color: var(--muted); margin-bottom: 18px; flex-wrap: wrap; }
+.breadcrumb a { color: var(--muted); text-decoration: none; transition: color .2s; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb-sep { color: rgba(255,255,255,.2); }
+.page-title { font-weight: 900; font-size: clamp(2rem,4vw,3rem); line-height: 1.2; margin-bottom: 12px; letter-spacing: -.04em; }
+.accent-text { background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.page-sub { color: var(--white-dim); font-size: 1rem; direction: ltr; text-align: left; }
+
+/* MAIN LAYOUT */
+.main-content { max-width: 1200px; margin: 0 auto; padding: 40px clamp(16px,5vw,80px); display: grid; grid-template-columns: 260px 1fr; gap: 32px; align-items: start; }
+
+/* FILTERS PANEL */
+.filters-panel { background: linear-gradient(135deg, rgba(17,12,41,.88), rgba(8,9,21,.82)); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius-lg); padding: 24px; position: sticky; top: 90px; }
+.filters-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,.07); }
+.filters-title { font-size: .9rem; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+.filters-reset { background: none; border: none; color: var(--accent); font-size: .75rem; font-weight: 700; cursor: pointer; font-family: var(--font-arabic); transition: all .2s; padding: 4px 8px; border-radius: 6px; }
+.filters-reset:hover { background: rgba(192,132,252,.1); }
+.filter-group { margin-bottom: 22px; }
+.filter-group-title { font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.filter-option { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-radius: 10px; cursor: pointer; transition: all .2s; font-size: .85rem; margin-bottom: 4px; border: 1px solid transparent; user-select: none; }
+.filter-option:hover { background: rgba(255,255,255,.05); }
+.filter-option.active { background: rgba(192,132,252,.1); border-color: rgba(192,132,252,.2); color: var(--accent); }
+.filter-option-label { display: flex; align-items: center; gap: 8px; }
+.filter-check { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid rgba(255,255,255,.15); display: flex; align-items: center; justify-content: center; font-size: .65rem; transition: all .2s; flex-shrink: 0; background: rgba(255,255,255,.04); }
+.filter-option.active .filter-check { border-color: var(--accent); background: rgba(192,132,252,.2); color: var(--accent); }
+.filter-count { font-size: .7rem; color: var(--muted); font-weight: 700; background: rgba(255,255,255,.05); border-radius: 999px; padding: 2px 7px; }
+.price-range-labels { display: flex; justify-content: space-between; font-size: .72rem; color: var(--muted); margin-bottom: 10px; }
+.range-input { width: 100%; -webkit-appearance: none; appearance: none; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--accent) var(--pct, 100%), rgba(255,255,255,.1) var(--pct, 100%)); outline: none; cursor: pointer; }
+.range-input::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--grad-primary); cursor: pointer; box-shadow: 0 0 8px rgba(192,132,252,.5); border: 2px solid rgba(255,255,255,.2); }
+
+/* PRODUCTS AREA */
+.products-toolbar { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+.search-box { flex: 1; min-width: 200px; display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 10px 14px; transition: all .25s; }
+.search-box:focus-within { border-color: rgba(192,132,252,.4); background: rgba(192,132,252,.05); box-shadow: 0 0 0 3px rgba(192,132,252,.1); }
+.search-box svg { color: var(--muted); flex-shrink: 0; }
+.search-input { flex: 1; background: none; border: none; outline: none; color: var(--white); font-family: var(--font-arabic); font-size: .88rem; direction: rtl; }
+.search-input::placeholder { color: rgba(255,255,255,.3); }
+.sort-select { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 10px 14px; color: var(--white); font-family: var(--font-arabic); font-size: .85rem; outline: none; cursor: pointer; min-width: 160px; -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a7aaa' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: left 12px center; padding-left: 32px; }
+.sort-select option { background: var(--navy-mid); }
+.sort-select:focus { border-color: rgba(192,132,252,.4); }
+.products-count { font-size: .82rem; color: var(--muted); font-weight: 600; white-space: nowrap; }
+.active-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; min-height: 8px; }
+.filter-chip { display: flex; align-items: center; gap: 6px; background: rgba(192,132,252,.1); border: 1px solid rgba(192,132,252,.25); border-radius: 999px; padding: 5px 12px; font-size: .75rem; font-weight: 700; color: var(--accent); cursor: pointer; transition: all .2s; }
+.filter-chip:hover { background: rgba(192,132,252,.18); }
+
+/* PRODUCTS GRID */
+.products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.product-card { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025)), linear-gradient(135deg, rgba(17,12,41,.88), rgba(8,9,21,.82)); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius-md); overflow: hidden; transition: all .32s cubic-bezier(.4,0,.2,1); cursor: pointer; display: flex; flex-direction: column; position: relative; }
+.product-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--grad-primary); opacity: .35; transition: opacity .3s; }
+.product-card:hover { transform: translateY(-5px); border-color: rgba(192,132,252,.28); box-shadow: 0 24px 60px rgba(0,0,0,.45); }
+.product-card:hover::before { opacity: 1; }
+.product-card.hidden { display: none; }
+.product-img { aspect-ratio: 4/3; background: linear-gradient(135deg, rgba(17,12,41,.9), rgba(8,9,21,.85)); display: flex; align-items: center; justify-content: center; font-size: 3.5rem; position: relative; overflow: hidden; }
+.product-img::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(192,132,252,.08), transparent 70%); }
+.product-badge-top { position: absolute; top: 10px; right: 10px; background: linear-gradient(135deg, rgba(192,132,252,.9), rgba(59,130,246,.8)); color: #fff; font-size: .62rem; font-weight: 800; padding: 3px 9px; border-radius: 6px; letter-spacing: .06em; text-transform: uppercase; z-index: 1; }
+.product-badge-type { position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,.6); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.8); font-size: .6rem; font-weight: 700; padding: 3px 9px; border-radius: 6px; z-index: 1; }
+.product-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+.product-cat { font-size: .65rem; color: var(--accent); font-weight: 800; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; }
+.product-name { font-size: .9rem; font-weight: 800; line-height: 1.35; margin-bottom: 10px; color: var(--white); }
+.product-specs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.spec-tag { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); border-radius: 6px; padding: 3px 8px; font-size: .65rem; font-weight: 700; color: var(--muted); letter-spacing: .04em; }
+.product-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.07); }
+.product-price-label { font-size: .62rem; color: var(--muted); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 2px; }
+.product-price-val { font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--white); line-height: 1; }
+.product-price-cur { font-size: .68rem; color: var(--muted); font-weight: 700; margin-right: 3px; }
+.btn-order { display: flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #c084fc, #60a5fa); color: #fff; border: none; border-radius: 10px; padding: 9px 14px; font-size: .78rem; font-weight: 800; cursor: pointer; text-decoration: none; white-space: nowrap; transition: all .2s; font-family: var(--font-arabic); box-shadow: 0 8px 20px rgba(124,58,237,.25); }
+.btn-order:hover { transform: translateY(-1px); box-shadow: 0 14px 35px rgba(124,58,237,.4); filter: brightness(1.05); }
+.empty-state { grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--muted); }
+.empty-state svg { width: 64px; height: 64px; opacity: .3; margin: 0 auto 16px; display: block; }
+.empty-state h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--white-dim); }
+
+/* MOBILE FILTER BAR */
+.mobile-filter-bar { display: none; align-items: center; justify-content: space-between; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 12px 16px; margin-bottom: 16px; cursor: pointer; font-size: .85rem; font-weight: 700; }
+.mobile-filter-bar.open { border-color: rgba(192,132,252,.3); }
+.filter-badge { background: var(--grad-primary); color: #fff; font-size: .65rem; font-weight: 900; padding: 2px 7px; border-radius: 999px; min-width: 18px; text-align: center; }
+
+/* ==================== SIDEBAR ==================== */
+.sidebar-overlay {
+  position: fixed; inset: 0; z-index: 998;
+  background: rgba(5,8,16,0.6);
+  backdrop-filter: blur(4px);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.4s;
+}
+.sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+.sidebar {
+  position: fixed; top: 0; right: 0; height: 100vh; height: 100dvh;
+  width: 280px; z-index: 999;
+  background: linear-gradient(180deg, rgba(8,8,18,0.97) 0%, rgba(17,10,34,0.96) 100%);
+  backdrop-filter: blur(24px);
+  border-left: 1px solid rgba(255,255,255,0.08);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.sidebar::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--grad-primary);
+}
+.sidebar.open { transform: translateX(0); }
+.sidebar-header {
+  padding: 22px 20px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.sidebar-close {
+  background: none; border: none; color: var(--white-dim); font-size: 1.5rem;
+  cursor: pointer; transition: color 0.2s; line-height: 1;
+}
+.sidebar-close:hover { color: var(--white); }
+.sidebar-nav { flex: 1; padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; }
+.sidebar-link {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; border-radius: 12px;
+  text-decoration: none; color: var(--white-dim);
+  font-size: 0.9rem; font-weight: 600;
+  transition: all 0.25s; border: 1px solid transparent;
+}
+.sidebar-link:hover, .sidebar-link.active {
+  background: linear-gradient(135deg, rgba(124,58,237,0.14), rgba(59,130,246,0.1));
+  border-color: rgba(192,132,252,0.16);
+  color: var(--white);
+}
+.sl-icon {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0;
+}
+.sidebar-footer {
+  padding: 16px 12px 32px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.sidebar-wa-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: linear-gradient(135deg, #25d366, #16a34a);
+  color: #fff; padding: 12px; border-radius: 12px;
+  font-size: 0.85rem; font-weight: 700; text-decoration: none;
+  transition: all 0.25s;
+}
+.sidebar-wa-btn:hover { transform: translateY(-1px); box-shadow: 0 14px 35px rgba(37,211,102,0.3); }
+
+/* ==================== NAVBAR DROPDOWN ==================== */
+.nav-dropdown { position: relative; }
+.nav-dropdown > a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.nav-drop-arrow {
+  font-size: 0.65rem;
+  margin-top: 1px;
+  transition: transform 0.22s;
+  display: inline-block;
+  opacity: 0.7;
+}
+.nav-dropdown.open .nav-drop-arrow { transform: rotate(180deg); }
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: rgba(9,7,20,0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(192,132,252,0.18);
+  border-radius: 14px;
+  min-width: 190px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04);
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 2000;
+}
+.nav-dropdown.open .dropdown-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: var(--grad-primary);
+}
+.dropdown-menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  color: var(--white-dim);
+  text-decoration: none;
+  font-size: 0.83rem;
+  font-weight: 600;
+  transition: all 0.18s;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { color: var(--white); background: rgba(192,132,252,0.1); }
+.drop-icon {
+  width: 28px; height: 28px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; flex-shrink: 0;
+}
+
+/* ==================== SIDEBAR SUBMENU ==================== */
+.sidebar-item { position: relative; }
+.sidebar-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  color: var(--white-dim);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+  border: 1px solid transparent;
+  width: 100%;
+  background: none;
+  text-align: right;
+  font-family: var(--font-arabic);
+}
+.sidebar-toggle:hover, .sidebar-item.open .sidebar-toggle {
+  background: linear-gradient(135deg, rgba(124,58,237,0.14), rgba(59,130,246,0.1));
+  border-color: rgba(192,132,252,0.16);
+  color: var(--white);
+}
+.sidebar-toggle .sb-arrow {
+  margin-right: auto;
+  margin-left: 0;
+  font-size: 0.65rem;
+  opacity: 0.65;
+  transition: transform 0.25s;
+}
+.sidebar-item.open .sb-arrow { transform: rotate(180deg); }
+.sidebar-submenu {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.32s cubic-bezier(0.4,0,0.2,1);
+}
+.sidebar-item.open .sidebar-submenu { max-height: 120px; }
+.sidebar-sublink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px 9px 14px;
+  margin: 2px 6px 2px 22px;
+  border-radius: 9px;
+  text-decoration: none;
+  color: var(--white-dim);
+  font-size: 0.84rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+.sidebar-sublink:hover {
+  color: var(--accent);
+  background: rgba(192,132,252,0.08);
+  border-color: rgba(192,132,252,0.12);
+}
+.sub-icon {
+  width: 24px; height: 24px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; flex-shrink: 0;
+}
+/* FOOTER */
+.footer-mini { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); padding: 24px clamp(16px,5vw,80px); text-align: center; font-size: .75rem; color: var(--muted); margin-top: 60px; }
+.footer-mini a { color: var(--accent); text-decoration: none; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 1100px) { .products-grid { grid-template-columns: repeat(2, 1fr); } .main-content { grid-template-columns: 220px 1fr; } }
+@media (max-width: 900px) { .main-content { grid-template-columns: 1fr; } .filters-panel { position: static; display: none; } .filters-panel.mobile-open { display: block; } .mobile-filter-bar { display: flex; } .nav-links { display: none; } .nav-mobile-btn { display: block; } }
+@media (max-width: 600px) { .products-grid { grid-template-columns: 1fr 1fr; gap: 12px; } .product-name { font-size: .82rem; } .product-price-val { font-size: 1.05rem; } .topbar-items { gap: 14px; } .product-body { padding: 12px; } }
+@media (max-width: 400px) { .products-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+
+<!-- NAV SIDEBAR -->
+<div class="sidebar-overlay" id="nav-overlay"></div>
+
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo" style="padding: 4px 8px;">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" width="24" height="24">
+          <defs><linearGradient id="sb-lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="#c7d4ff"/></linearGradient></defs>
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#sb-lg)"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">SH Smart DZ</span>
+      </div>
+    </div>
+    <button class="sidebar-close" id="sidebar-close" aria-label="إغلاق">×</button>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="index.html" class="sidebar-link active">
+      <div class="sl-icon">🏠</div>
+      <span>الرئيسية — Accueil</span>
+    </a>
+    <a href="products.html" class="sidebar-link">
+      <div class="sl-icon">📦</div>
+      <span>المنتجات — Produits</span>
+    </a>
+    <div class="sidebar-item" id="sidebar-onduleur">
+      <button class="sidebar-toggle" onclick="toggleSidebarItem('sidebar-onduleur')">
+        <div class="sl-icon">⚡</div>
+        <span>الأندولور — Onduleurs</span>
+        <span class="sb-arrow">▾</span>
+      </button>
+      <div class="sidebar-submenu">
+        <a href="onduleur-landing_hbm.html" class="sidebar-sublink">
+          <div class="sub-icon">⚡</div>
+          HBM
+        </a>
+        <a href="onduleur-landing.html" class="sidebar-sublink">
+          <div class="sub-icon">🏢</div>
+          Icon
+        </a>
+      </div>
+    </div>
+    <a href="stabilisateur-landing.html" class="sidebar-link">
+      <div class="sl-icon">🔋</div>
+      <span>المثبت — Stabilisateurs</span>
+    </a>
+    <a href="batteries-ups-landing.html" class="sidebar-link">
+      <div class="sl-icon">🛡️</div>
+      <span>البطاريات — Batteries UPS</span>
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="https://wa.me/213541773930" class="sidebar-wa-btn" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2c-5.514 0-9.999 4.486-9.999 10 0 1.76.462 3.41 1.268 4.847L2 22l5.293-1.238A9.951 9.951 0 0012 22c5.514 0 10-4.486 10-10S17.513 2 11.999 2z"/></svg>
+      تواصل عبر واتساب
+    </a>
+  </div>
+</aside>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <ul class="nav-links">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="products.html" class="active">المنتجات</a></li>
+      <li><a href="onduleur-landing.html">الأندولور</a></li>
+      <li><a href="stabilisateur-landing.html">المثبت</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button class="nav-mobile-btn" id="nav-menu-btn" aria-label="القائمة">☰</button>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-grid"></div>
+  <div class="page-header-inner">
+    <div class="breadcrumb">
+      <a href="index.html">الرئيسية</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>المنتجات</span>
+    </div>
+    <h1 class="page-title">كتالوج <span class="accent-text">المنتجات</span></h1>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+  <!-- FILTERS -->
+  <aside class="filters-panel" id="filters-panel">
+    <div class="filters-header">
+      <div class="filters-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+        التصفية — Filtres
+      </div>
+      <button class="filters-reset" id="filters-reset-btn">إعادة ضبط</button>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title">الفئة — Catégorie</div>
+      <div class="filter-option active" data-filter="cat" data-value="all">
+        <div class="filter-option-label"><div class="filter-check">✓</div>الكل — Tout</div>
+        <span class="filter-count">15</span>
+      </div>
+      <div class="filter-option" data-filter="cat" data-value="onduleur-online">
+        <div class="filter-option-label"><div class="filter-check"></div>Online Rackable</div>
+        <span class="filter-count">4</span>
+      </div>
+      <div class="filter-option" data-filter="cat" data-value="onduleur-tour">
+        <div class="filter-option-label"><div class="filter-check"></div>Line Interactive Tour</div>
+        <span class="filter-count">5</span>
+      </div>
+      <div class="filter-option" data-filter="cat" data-value="onduleur-ups">
+        <div class="filter-option-label"><div class="filter-check"></div>UPS Compact</div>
+        <span class="filter-count">3</span>
+      </div>
+      <div class="filter-option" data-filter="cat" data-value="stabilisateur">
+        <div class="filter-option-label"><div class="filter-check"></div>Stabilisateur</div>
+        <span class="filter-count">3</span>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title">الشكل — Forme</div>
+      <div class="filter-option active" data-filter="form" data-value="all">
+        <div class="filter-option-label"><div class="filter-check">✓</div>الكل — Tout</div>
+      </div>
+      <div class="filter-option" data-filter="form" data-value="rackable">
+        <div class="filter-option-label"><div class="filter-check"></div>Rackable</div>
+        <span class="filter-count">4</span>
+      </div>
+      <div class="filter-option" data-filter="form" data-value="tour">
+        <div class="filter-option-label"><div class="filter-check"></div>Tour</div>
+        <span class="filter-count">5</span>
+      </div>
+      <div class="filter-option" data-filter="form" data-value="compact">
+        <div class="filter-option-label"><div class="filter-check"></div>Compact</div>
+        <span class="filter-count">6</span>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title">السعر الأقصى — Prix max</div>
+      <div class="price-range-labels">
+        <span>0 DZD</span>
+        <span id="price-range-display">252 000 DZD</span>
+      </div>
+      <input type="range" class="range-input" id="price-range" min="0" max="252000" value="252000" step="1000">
+    </div>
+  </aside>
+
+  <!-- PRODUCTS AREA -->
+  <div class="products-area">
+    <div class="mobile-filter-bar" id="mobile-filter-toggle">
+      <span>🎛 التصفية — Filtres</span>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="filter-badge" id="active-filter-count">0</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
+
+    <div class="products-toolbar">
+      <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="ابحث — Rechercher...">
+      </div>
+      <select class="sort-select" id="sort-select">
+        <option value="default">الترتيب الافتراضي</option>
+        <option value="price-asc">السعر: الأقل أولاً</option>
+        <option value="price-desc">السعر: الأعلى أولاً</option>
+        <option value="name-asc">الاسم: أ–ي</option>
+      </select>
+      <span class="products-count" id="products-count">15 منتج</span>
+    </div>
+
+    <div class="active-filters" id="active-filters-area"></div>
+
+    <div class="products-grid" id="products-grid"></div>
+  </div>
+</div>
+
+<footer class="footer-mini">
+  <p>© 2026 SH Smart DZ — <a href="index.html">الرئيسية</a> | <a href="https://wa.me/213541773930">05 41 77 39 30</a></p>
+</footer>
+
+<script>
+const PRODUCTS = [
+  { id:1,  name:"Onduleur 10KVA LINE INTERACTIVE Tour Medical HBM", name_ar:"أندولور 10KVA", cat:"onduleur-tour",   form:"tour",     power:"10KVA",  price:225000, emoji:"🏢", badge:"طاقة عالية",          tags:["10KVA","Medical","Tour","Line Interactive"], href:"onduleur-landing.html" },
+  { id:2,  name:"Onduleur 1KVA LINE INTERACTIVE Tour Medical HBM",  name_ar:"أندولور 1KVA",  cat:"onduleur-tour",   form:"tour",     power:"1KVA",   price:38500,  emoji:"⚡", badge:null,                    tags:["1KVA","Medical","Tour","Line Interactive"],  href:"onduleur-landing.html" },
+  { id:3,  name:"Onduleur 2KVA LINE INTERACTIVE Tour Medical HBM",  name_ar:"أندولور 2KVA",  cat:"onduleur-tour",   form:"tour",     power:"2KVA",   price:49000,  emoji:"⚡", badge:"شائع",                  tags:["2KVA","Medical","Tour","Line Interactive"],  href:"onduleur-landing.html" },
+  { id:4,  name:"Onduleur 3KVA LINE INTERACTIVE Tour Medical HBM",  name_ar:"أندولور 3KVA",  cat:"onduleur-tour",   form:"tour",     power:"3KVA",   price:56500,  emoji:"⚡", badge:null,                    tags:["3KVA","Medical","Tour","Line Interactive"],  href:"onduleur-landing.html" },
+  { id:5,  name:"Onduleur 6KVA LINE INTERACTIVE Tour Medical HBM",  name_ar:"أندولور 6KVA",  cat:"onduleur-tour",   form:"tour",     power:"6KVA",   price:160000, emoji:"🏢", badge:null,                    tags:["6KVA","Medical","Tour","Line Interactive"],  href:"onduleur-landing.html" },
+  { id:6,  name:"Onduleur HBM UPS 650VA + Afficheur LCD 2S Prise",  name_ar:"UPS 650VA LCD", cat:"onduleur-ups",    form:"compact",  power:"650VA",  price:6800,   emoji:"🔋", badge:"أرخص سعر",              tags:["650VA","LCD","Compact","UPS"],               href:"onduleur-landing.html" },
+  { id:7,  name:"Onduleur HBM UPS 1000VA + Afficheur LCD 2S Prise", name_ar:"UPS 1000VA LCD",cat:"onduleur-ups",    form:"compact",  power:"1KVA",   price:13200,  emoji:"🔋", badge:"اقتصادي",               tags:["1000VA","LCD","Compact","UPS"],              href:"onduleur-landing.html" },
+  { id:8,  name:"Onduleur HBM UPS 3000VA + Afficheur LCD 3S + Fan", name_ar:"UPS 3000VA LCD",cat:"onduleur-ups",    form:"compact",  power:"3KVA",   price:50000,  emoji:"🔋", badge:null,                    tags:["3000VA","LCD","Fan","Compact","UPS"],        href:"onduleur-landing.html" },
+  { id:9,  name:"Onduleur Stabilisateur HBM 1200VA 3S Prise",       name_ar:"مثبت 1200VA",   cat:"stabilisateur",   form:"compact",  power:"1200VA", price:14500,  emoji:"⚙️", badge:null,                    tags:["1200VA","3 Prises","Stabilisateur"],         href:"stabilisateur-landing.html" },
+  { id:10, name:"Onduleur Stabilisateur HBM Afficheur 1500VA 4S",   name_ar:"مثبت 1500VA",   cat:"stabilisateur",   form:"compact",  power:"1500VA", price:19500,  emoji:"⚙️", badge:null,                    tags:["1500VA","4 Prises","LCD","Stabilisateur"],   href:"stabilisateur-landing.html" },
+  { id:11, name:"Onduleur Stabilisateur HBM Afficheur 2000VA 4S",   name_ar:"مثبت 2000VA",   cat:"stabilisateur",   form:"compact",  power:"2000VA", price:24000,  emoji:"⚙️", badge:"الأكثر طلباً",          tags:["2000VA","4 Prises","LCD","Stabilisateur"],   href:"stabilisateur-landing.html" },
+  { id:12, name:"Onduleur + LCD 2KVA ON-LINE Rackable HBM",         name_ar:"Rackable 2KVA", cat:"onduleur-online", form:"rackable", power:"2KVA",   price:58000,  emoji:"🖥️", badge:"الأكثر مبيعاً",         tags:["2KVA","Online","Rackable","LCD"],            href:"onduleur-landing.html" },
+  { id:13, name:"Onduleur + LCD 3KVA ON-LINE Rackable HBM",         name_ar:"Rackable 3KVA", cat:"onduleur-online", form:"rackable", power:"3KVA",   price:71000,  emoji:"🖥️", badge:null,                    tags:["3KVA","Online","Rackable","LCD"],            href:"onduleur-landing.html" },
+  { id:14, name:"Onduleur + LCD 6KVA ON-LINE Rackable HBM",         name_ar:"Rackable 6KVA", cat:"onduleur-online", form:"rackable", power:"6KVA",   price:172000, emoji:"🖥️", badge:null,                    tags:["6KVA","Online","Rackable","LCD"],            href:"onduleur-landing.html" },
+  { id:15, name:"Onduleur + LCD 10KVA ON-LINE Rackable HBM",        name_ar:"Rackable 10KVA",cat:"onduleur-online", form:"rackable", power:"10KVA",  price:252000, emoji:"🖥️", badge:"Online Double Conversion",tags:["10KVA","Online","Rackable","LCD"],           href:"onduleur-landing.html" }
+];
+
+const CAT_LABELS = { 'onduleur-online':'Online Rackable', 'onduleur-tour':'Line Interactive Tour', 'onduleur-ups':'UPS Compact', 'stabilisateur':'Stabilisateur' };
+let state = { search:'', cat:'all', form:'all', maxPrice:252000, sort:'default' };
+
+function fmt(n){ return n.toLocaleString('fr-DZ'); }
+function getCatLabel(c){ return CAT_LABELS[c]||c; }
+
+function getFiltered(){
+  let list=[...PRODUCTS];
+  if(state.cat!=='all') list=list.filter(p=>p.cat===state.cat);
+  if(state.form!=='all') list=list.filter(p=>p.form===state.form);
+  list=list.filter(p=>p.price<=state.maxPrice);
+  if(state.search){ const q=state.search.toLowerCase(); list=list.filter(p=>p.name.toLowerCase().includes(q)||p.name_ar.includes(state.search)||p.tags.some(t=>t.toLowerCase().includes(q))); }
+  if(state.sort==='price-asc') list.sort((a,b)=>a.price-b.price);
+  else if(state.sort==='price-desc') list.sort((a,b)=>b.price-a.price);
+  else if(state.sort==='name-asc') list.sort((a,b)=>a.name.localeCompare(b.name));
+  return list;
+}
+
+function renderCard(p){
+  return `<div class="product-card reveal">
+    <div class="product-img">
+      ${p.emoji}
+      ${p.badge?`<div class="product-badge-top">${p.badge}</div>`:''}
+      <div class="product-badge-type">${p.power}</div>
+    </div>
+    <div class="product-body">
+      <div class="product-cat">${getCatLabel(p.cat)}</div>
+      <div class="product-name">${p.name}</div>
+      <div class="product-specs">${p.tags.slice(0,3).map(t=>`<span class="spec-tag">${t}</span>`).join('')}</div>
+      <div class="product-footer">
+        <div>
+          <div class="product-price-label">السعر TTC</div>
+          <div style="display:flex;align-items:baseline;gap:3px;">
+            <span class="product-price-val">${fmt(p.price)}</span>
+            <span class="product-price-cur">DZD</span>
+          </div>
+        </div>
+        <a href="${p.href}" class="btn-order">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
+          اطلب
+        </a>
+      </div>
+    </div>
+  </div>`;
+}
+
+function render(){
+  const filtered=getFiltered();
+  const grid=document.getElementById('products-grid');
+  document.getElementById('products-count').textContent=`${filtered.length} منتج`;
+  grid.innerHTML = filtered.length===0
+    ? `<div class="empty-state" style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;opacity:.3;margin:0 auto 16px;display:block;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:8px;color:var(--white-dim);">لا توجد نتائج — Aucun résultat</h3>
+        <p>حاول تغيير معايير البحث</p>
+      </div>`
+    : filtered.map(renderCard).join('');
+  initReveal();
+  updateFilterUI();
+}
+
+function updateFilterUI(){
+  document.querySelectorAll('[data-filter="cat"]').forEach(el=>{
+    const a=el.dataset.value===state.cat;
+    el.classList.toggle('active',a);
+    el.querySelector('.filter-check').textContent=a?'✓':'';
+  });
+  document.querySelectorAll('[data-filter="form"]').forEach(el=>{
+    const a=el.dataset.value===state.form;
+    el.classList.toggle('active',a);
+    el.querySelector('.filter-check').textContent=a?'✓':'';
+  });
+  let count=0;
+  if(state.cat!=='all') count++;
+  if(state.form!=='all') count++;
+  if(state.maxPrice<252000) count++;
+  if(state.search) count++;
+  document.getElementById('active-filter-count').textContent=count;
+
+  const area=document.getElementById('active-filters-area');
+  let chips=[];
+  if(state.cat!=='all') chips.push(`<div class="filter-chip" data-clear="cat"><span>✕</span>${getCatLabel(state.cat)}</div>`);
+  if(state.form!=='all') chips.push(`<div class="filter-chip" data-clear="form"><span>✕</span>${state.form}</div>`);
+  if(state.maxPrice<252000) chips.push(`<div class="filter-chip" data-clear="price"><span>✕</span>≤ ${fmt(state.maxPrice)} DZD</div>`);
+  if(state.search) chips.push(`<div class="filter-chip" data-clear="search"><span>✕</span>"${state.search}"</div>`);
+  area.innerHTML=chips.join('');
+  area.querySelectorAll('[data-clear]').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      const k=chip.dataset.clear;
+      if(k==='cat') state.cat='all';
+      if(k==='form') state.form='all';
+      if(k==='price'){ state.maxPrice=252000; document.getElementById('price-range').value=252000; updateRange(); }
+      if(k==='search'){ state.search=''; document.getElementById('search-input').value=''; }
+      render();
+    });
+  });
+}
+
+function updateRange(){
+  const el=document.getElementById('price-range');
+  const pct=(el.value/252000)*100;
+  el.style.setProperty('--pct',pct+'%');
+  document.getElementById('price-range-display').textContent=fmt(Number(el.value))+' DZD';
+}
+
+function initReveal(){
+  const els=document.querySelectorAll('.reveal:not(.visible)');
+  if(!els.length) return;
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+  },{threshold:0.08});
+  els.forEach(el=>obs.observe(el));
+}
+
+// Events
+document.getElementById('search-input').addEventListener('input',e=>{state.search=e.target.value.trim();render();});
+document.getElementById('sort-select').addEventListener('change',e=>{state.sort=e.target.value;render();});
+document.getElementById('price-range').addEventListener('input',e=>{state.maxPrice=Number(e.target.value);updateRange();render();});
+document.getElementById('filters-reset-btn').addEventListener('click',()=>{
+  state={search:'',cat:'all',form:'all',maxPrice:252000,sort:'default'};
+  document.getElementById('search-input').value='';
+  document.getElementById('sort-select').value='default';
+  document.getElementById('price-range').value=252000;
+  updateRange();
+  render();
+});
+document.querySelectorAll('[data-filter]').forEach(el=>{
+  el.addEventListener('click',()=>{
+    const f=el.dataset.filter,v=el.dataset.value;
+    if(f==='cat') state.cat=v;
+    if(f==='form') state.form=v;
+    render();
+  });
+});
+document.getElementById('mobile-filter-toggle').addEventListener('click',()=>{
+  document.getElementById('filters-panel').classList.toggle('mobile-open');
+  document.getElementById('mobile-filter-toggle').classList.toggle('open');
+});
+
+// ─── Sidebar Submenu ───
+function toggleSidebarItem(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+// Mobile nav
+const menuBtn = document.getElementById('nav-menu-btn');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('sidebar-overlay');
+const closeBtn = document.getElementById('sidebar-close');
+
+function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('open'); }
+function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('open'); }
+
+menuBtn && menuBtn.addEventListener('click', openSidebar);
+closeBtn && closeBtn.addEventListener('click', closeSidebar);
+overlay && overlay.addEventListener('click', closeSidebar);
+
+
+// Init
+updateRange();
+render();
+</script>
+</body>
+</html>

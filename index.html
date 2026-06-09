@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SH Smart DZ — تقنية موثوقة للجزائر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Cinzel:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ==================== DESIGN TOKENS ==================== */
+:root {
+  --black: #050810;
+  --navy: #080f1e;
+  --navy-mid: #0d1a35;
+  --navy-light: #111827;
+  --blue: #1a4b8c;
+  --blue2: #1e5ab0;
+  --blue-bright: #3a9ff5;
+  --blue-glow: rgba(10,127,245,0.35);
+  --blue-soft: rgba(10,127,245,0.12);
+  --purple: #7c3aed;
+  --purple-soft: rgba(124,58,237,0.12);
+  --accent: #c084fc;
+  --accent2: #60a5fa;
+  --gold: #f5c518;
+  --white: #f0f4ff;
+  --white-dim: rgba(240,244,255,0.72);
+  --white-faint: rgba(240,244,255,0.12);
+  --glass: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.08);
+  --muted: #5a7aaa;
+  --text: #e8f0ff;
+  --border: rgba(60,100,180,0.25);
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --font-arabic: 'Cairo', sans-serif;
+  --font-logo: 'Cinzel', serif;
+  --shadow-blue: 0 0 60px rgba(10,127,245,0.2);
+  --shadow-card: 0 8px 40px rgba(0,0,0,0.5);
+  --grad-primary: linear-gradient(135deg, #c084fc, #60a5fa);
+  --grad-hero: linear-gradient(135deg, rgba(192,132,252,0.2), rgba(96,165,250,0.12));
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-arabic);
+  line-height: 1.7;
+  overflow-x: hidden;
+  direction: rtl;
+}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 2px; }
+
+/* ==================== TOPBAR ==================== */
+.topbar {
+  background: linear-gradient(90deg, rgba(124,58,237,0.95), rgba(59,130,246,0.92), rgba(236,72,153,0.90));
+  padding: 9px 0;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.topbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shimmer 3s infinite;
+}
+@keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+.topbar-items {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding: 0 16px;
+  position: relative;
+}
+.topbar-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.topbar-item svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* ==================== NAVBAR ==================== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 clamp(16px, 5vw, 80px);
+  height: 72px;
+  background: rgba(9,7,20,0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+}
+.navbar::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(192,132,252,0.75), rgba(34,211,238,0.55), transparent);
+}
+.navbar-inner {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 12px;
+  transition: all 0.3s;
+  flex-direction: row-reverse;
+  position: relative;
+  overflow: hidden;
+}
+.logo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(192,132,252,0.15), rgba(59,130,246,0.1));
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: 12px;
+}
+.logo:hover::before { opacity: 1; }
+.logo:hover { transform: translateY(-2px); }
+.logo-icon {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, rgba(192,132,252,0.95), rgba(59,130,246,0.95));
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px rgba(124,58,237,0.35);
+  flex-shrink: 0;
+}
+.logo-icon svg { width: 24px; height: 24px; }
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.logo-name {
+  font-family: var(--font-logo);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  background: linear-gradient(135deg, #ffffff, #b3d9ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.logo-tagline {
+  font-size: 0.6rem;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+}
+.nav-links a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--white-dim);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.22s;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--white);
+  background: rgba(255,255,255,0.06);
+}
+.nav-links a.active { color: var(--accent); }
+.nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-wa-nav {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(37,211,102,0.12);
+  border: 1px solid rgba(37,211,102,0.28);
+  padding: 9px 18px;
+  border-radius: 999px;
+  color: #25d366;
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-decoration: none;
+  transition: all 0.22s;
+}
+.btn-wa-nav:hover { background: rgba(37,211,102,0.22); border-color: rgba(37,211,102,0.5); transform: translateY(-1px); }
+.btn-wa-nav svg { width: 15px; height: 15px; }
+.nav-mobile-btn {
+  display: none;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--white);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+/* ==================== HERO ==================== */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(60px, 10vh, 100px) clamp(16px, 5vw, 80px);
+  background: var(--black);
+}
+/* Hero background image layer */
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  background-image: url('chatgpt.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  filter: blur(3px) brightness(0.55) saturate(0.85);
+  transform: scale(1.06);
+  z-index: 0;
+}
+/* Dark gradient overlay on top of image */
+.hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg,
+      rgba(5,8,16,0.55) 0%,
+      rgba(5,8,16,0.40) 40%,
+      rgba(5,8,16,0.72) 100%
+    ),
+    radial-gradient(circle at 50% 0%, rgba(192,132,252,0.15), transparent 30%),
+    radial-gradient(circle at 20% 60%, rgba(236,72,153,0.09), transparent 24%),
+    radial-gradient(circle at 85% 20%, rgba(59,130,246,0.09), transparent 26%);
+  pointer-events: none;
+  z-index: 1;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 52px 52px;
+  opacity: 0.32;
+  pointer-events: none;
+  z-index: 2;
+}
+.hero-glow {
+  position: absolute;
+  width: 720px; height: 720px;
+  background: radial-gradient(circle, rgba(192,132,252,0.2) 0%, rgba(124,58,237,0.08) 34%, transparent 70%);
+  top: -160px; left: 50%; transform: translateX(-50%);
+  filter: blur(14px);
+  animation: pulseGlow 5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+@keyframes pulseGlow { 0%,100% { opacity: 0.6; transform: translateX(-50%) scale(1); } 50% { opacity: 1; transform: translateX(-50%) scale(1.07); } }
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50px;
+  padding: 7px 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(248,247,255,0.92);
+  margin-bottom: 22px;
+  animation: fadeDown 0.6s ease both;
+}
+.label-dot {
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulseDot 1.5s ease infinite;
+  box-shadow: 0 0 8px rgba(192,132,252,0.6);
+}
+@keyframes pulseDot { 0%,100% { transform: scale(1); } 50% { transform: scale(1.4); } }
+@keyframes fadeDown { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeLeft { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+.hero-headline {
+  font-family: var(--font-arabic);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  margin-bottom: 20px;
+  animation: fadeDown 0.6s 0.1s ease both;
+  text-shadow: 0 12px 50px rgba(0,0,0,0.22);
+  text-wrap: balance;
+}
+.hero-headline .accent {
+  background: linear-gradient(135deg, #f5d0fe, #c084fc, #60a5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub {
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  color: var(--white-dim);
+  margin-bottom: 38px;
+  max-width: 500px;
+  direction: ltr;
+  text-align: left;
+  animation: fadeDown 0.6s 0.2s ease both;
+  line-height: 1.8;
+}
+.hero-ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 44px;
+  animation: fadeDown 0.6s 0.3s ease both;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #c084fc, #60a5fa);
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 18px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 18px 40px rgba(124,58,237,0.28);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 26px 55px rgba(124,58,237,0.34); filter: brightness(1.05); }
+.btn-primary:hover::after { left: 150%; }
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.05);
+  color: var(--white);
+  padding: 14px 28px;
+  border-radius: 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.btn-secondary:hover { background: rgba(192,132,252,0.12); border-color: rgba(192,132,252,0.26); transform: translateY(-1px); }
+.hero-trust {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  animation: fadeDown 0.6s 0.4s ease both;
+}
+.trust-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--white-dim);
+  backdrop-filter: blur(12px);
+}
+.trust-dot { color: var(--accent); font-size: 0.65rem; }
+
+/* HERO VISUAL */
+.hero-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeLeft 0.8s 0.2s ease both;
+  filter: drop-shadow(0 30px 90px rgba(0,0,0,0.3));
+}
+.stat-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.stat-card {
+  background: linear-gradient(135deg, rgba(17,12,41,0.9), rgba(8,9,21,0.85));
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+  padding: 22px 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: var(--grad-primary);
+  opacity: 0.6;
+}
+.stat-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); border-color: rgba(192,132,252,0.25); }
+.stat-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-label { font-size: 0.78rem; color: var(--white-dim); font-weight: 500; }
+.hero-banner {
+  background: linear-gradient(135deg, rgba(17,12,41,0.9), rgba(8,9,21,0.85));
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(192,132,252,0.7), rgba(34,211,238,0.6), transparent);
+}
+.banner-icon {
+  width: 52px; height: 52px;
+  background: linear-gradient(135deg, rgba(192,132,252,0.2), rgba(59,130,246,0.15));
+  border: 1px solid rgba(192,132,252,0.3);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+.banner-text h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 3px; }
+.banner-text p { font-size: 0.78rem; color: var(--white-dim); direction: ltr; text-align: left; }
+
+/* ==================== SECTION WRAPPER ==================== */
+.section {
+  padding: clamp(60px, 8vw, 100px) clamp(16px, 5vw, 80px);
+  position: relative;
+}
+.section::before {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle at 10% 0%, rgba(192,132,252,0.06), transparent 22%),
+              radial-gradient(circle at 90% 100%, rgba(59,130,246,0.06), transparent 24%);
+}
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(192,132,252,0.08);
+  border: 1px solid rgba(192,132,252,0.18);
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.section-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  letter-spacing: -0.04em;
+}
+.section-sub {
+  color: var(--white-dim);
+  font-size: 1rem;
+  max-width: 580px;
+  margin-bottom: 50px;
+  line-height: 1.8;
+}
+.text-center { text-align: center; }
+.text-center .section-sub { margin-left: auto; margin-right: auto; }
+.accent-text { background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+/* ==================== CATEGORIES ==================== */
+.categories-section { background: var(--navy); }
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.category-card {
+  background: linear-gradient(135deg, rgba(17,12,41,0.88), rgba(8,9,21,0.82));
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  text-decoration: none;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+  cursor: pointer;
+}
+.category-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: var(--grad-primary);
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+.category-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(192,132,252,0.08), rgba(96,165,250,0.05));
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.category-card:hover { transform: translateY(-6px); border-color: rgba(192,132,252,0.28); box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
+.category-card:hover::before { opacity: 1; }
+.category-card:hover::after { opacity: 1; }
+.category-icon {
+  width: 60px; height: 60px;
+  background: linear-gradient(135deg, rgba(192,132,252,0.2), rgba(59,130,246,0.15));
+  border: 1px solid rgba(192,132,252,0.3);
+  border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s;
+}
+.category-card:hover .category-icon {
+  box-shadow: 0 0 30px rgba(192,132,252,0.3);
+  transform: scale(1.08);
+}
+.category-content { position: relative; z-index: 1; }
+.category-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 6px; }
+.category-fr { font-size: 0.78rem; color: var(--accent); font-weight: 700; letter-spacing: 0.05em; margin-bottom: 10px; }
+.category-desc { font-size: 0.82rem; color: var(--white-dim); line-height: 1.6; margin-bottom: 16px; }
+.category-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--white-dim);
+  font-weight: 600;
+}
+.category-arrow {
+  margin-top: auto;
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem;
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  z-index: 1;
+  transition: all 0.3s;
+}
+.category-card:hover .category-arrow { background: rgba(192,132,252,0.2); border-color: rgba(192,132,252,0.4); transform: translate(-3px, -3px); }
+
+/* ==================== FEATURED PRODUCTS ==================== */
+.featured-section { background: var(--black); }
+.products-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.product-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025)),
+              linear-gradient(135deg, rgba(17,12,41,0.88), rgba(8,9,21,0.82));
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--white);
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+.product-card:hover { transform: translateY(-5px); border-color: rgba(192,132,252,0.28); box-shadow: 0 20px 50px rgba(0,0,0,0.45); }
+.product-img {
+  aspect-ratio: 4/3;
+  background: rgba(255,255,255,0.03);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.product-img::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: var(--grad-primary);
+  opacity: 0.4;
+}
+.product-badge {
+  position: absolute;
+  top: 10px; right: 10px;
+  background: linear-gradient(135deg, rgba(192,132,252,0.9), rgba(59,130,246,0.8));
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 6px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.product-body { padding: 16px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.product-cat { font-size: 0.65rem; color: var(--accent); font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+.product-name { font-size: 0.9rem; font-weight: 800; line-height: 1.3; }
+.product-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.product-price-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--white);
+}
+.product-price-cur { font-size: 0.72rem; color: var(--muted); font-weight: 700; }
+.product-cta-mini {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  background: rgba(192,132,252,0.1);
+  border: 1px solid rgba(192,132,252,0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+  transition: all 0.2s;
+  justify-content: center;
+}
+.product-card:hover .product-cta-mini { background: rgba(192,132,252,0.18); border-color: rgba(192,132,252,0.4); }
+
+/* ==================== WHY US ==================== */
+.whyus-section { background: var(--navy); }
+.whyus-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.why-card {
+  background: linear-gradient(135deg, rgba(17,12,41,0.88), rgba(8,9,21,0.82));
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.3s;
+}
+.why-card:hover { border-color: rgba(192,132,252,0.28); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+.why-icon {
+  width: 64px; height: 64px;
+  margin: 0 auto 18px;
+  background: linear-gradient(135deg, rgba(192,132,252,0.95), rgba(59,130,246,0.95));
+  border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.7rem;
+  box-shadow: 0 8px 30px rgba(124,58,237,0.3);
+}
+.why-title { font-size: 1rem; font-weight: 800; margin-bottom: 8px; }
+.why-desc { font-size: 0.82rem; color: var(--white-dim); line-height: 1.6; }
+
+/* ==================== NEWSLETTER / CTA BAND ==================== */
+.cta-section { background: var(--black); }
+.cta-band {
+  background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(59,130,246,0.1));
+  border: 1px solid rgba(192,132,252,0.2);
+  border-radius: var(--radius-lg);
+  padding: 52px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-band::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--grad-primary);
+}
+.cta-band::after {
+  content: '';
+  position: absolute;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%);
+  right: -100px; top: -100px;
+  pointer-events: none;
+}
+.cta-content h2 { font-size: 1.8rem; font-weight: 900; margin-bottom: 10px; line-height: 1.25; }
+.cta-content p { font-size: 0.92rem; color: var(--white-dim); max-width: 420px; direction: ltr; text-align: left; }
+.cta-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.btn-wa-big {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #25d366, #16a34a);
+  color: #fff;
+  padding: 15px 28px;
+  border-radius: 18px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 14px 40px rgba(37,211,102,0.25);
+  white-space: nowrap;
+}
+.btn-wa-big:hover { transform: translateY(-2px); box-shadow: 0 20px 50px rgba(37,211,102,0.35); }
+.btn-wa-big svg { width: 20px; height: 20px; }
+.cta-sub { font-size: 0.75rem; color: var(--white-dim); text-align: center; }
+
+/* ==================== FOOTER ==================== */
+.footer {
+  background: var(--navy);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 52px clamp(16px, 5vw, 80px) 24px;
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 28px;
+}
+.footer-brand p { font-size: 0.83rem; color: var(--white-dim); margin: 12px 0 20px; line-height: 1.8; }
+.footer-socials { display: flex; gap: 10px; }
+.social-btn {
+  width: 38px; height: 38px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none;
+  color: var(--white-dim);
+  font-size: 0.9rem;
+  transition: all 0.25s;
+}
+.social-btn:hover { background: rgba(192,132,252,0.12); border-color: rgba(192,132,252,0.3); color: var(--accent); transform: translateY(-2px); }
+.footer-col h4 { font-size: 0.85rem; font-weight: 800; margin-bottom: 16px; color: var(--white); }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 0.8rem; color: var(--white-dim); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--accent); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--white-dim);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.footer-trust { display: flex; gap: 14px; flex-wrap: wrap; }
+.trust-badge {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--white-dim);
+}
+
+/* ==================== SIDEBAR ==================== */
+.sidebar-overlay {
+  position: fixed; inset: 0; z-index: 998;
+  background: rgba(5,8,16,0.6);
+  backdrop-filter: blur(4px);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.4s;
+}
+.sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+.sidebar {
+  position: fixed; top: 0; right: 0; height: 100vh; height: 100dvh;
+  width: 280px; z-index: 999;
+  background: linear-gradient(180deg, rgba(8,8,18,0.97) 0%, rgba(17,10,34,0.96) 100%);
+  backdrop-filter: blur(24px);
+  border-left: 1px solid rgba(255,255,255,0.08);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.sidebar::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--grad-primary);
+}
+.sidebar.open { transform: translateX(0); }
+.sidebar-header {
+  padding: 22px 20px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.sidebar-close {
+  background: none; border: none; color: var(--white-dim); font-size: 1.5rem;
+  cursor: pointer; transition: color 0.2s; line-height: 1;
+}
+.sidebar-close:hover { color: var(--white); }
+.sidebar-nav { flex: 1; padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; }
+.sidebar-link {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; border-radius: 12px;
+  text-decoration: none; color: var(--white-dim);
+  font-size: 0.9rem; font-weight: 600;
+  transition: all 0.25s; border: 1px solid transparent;
+}
+.sidebar-link:hover, .sidebar-link.active {
+  background: linear-gradient(135deg, rgba(124,58,237,0.14), rgba(59,130,246,0.1));
+  border-color: rgba(192,132,252,0.16);
+  color: var(--white);
+}
+.sl-icon {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0;
+}
+.sidebar-footer {
+  padding: 16px 12px 32px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.sidebar-wa-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: linear-gradient(135deg, #25d366, #16a34a);
+  color: #fff; padding: 12px; border-radius: 12px;
+  font-size: 0.85rem; font-weight: 700; text-decoration: none;
+  transition: all 0.25s;
+}
+.sidebar-wa-btn:hover { transform: translateY(-1px); box-shadow: 0 14px 35px rgba(37,211,102,0.3); }
+
+/* ==================== NAVBAR DROPDOWN ==================== */
+.nav-dropdown { position: relative; }
+.nav-dropdown > a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.nav-drop-arrow {
+  font-size: 0.65rem;
+  margin-top: 1px;
+  transition: transform 0.22s;
+  display: inline-block;
+  opacity: 0.7;
+}
+.nav-dropdown.open .nav-drop-arrow { transform: rotate(180deg); }
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: rgba(9,7,20,0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(192,132,252,0.18);
+  border-radius: 14px;
+  min-width: 190px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04);
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 2000;
+}
+.nav-dropdown.open .dropdown-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: var(--grad-primary);
+}
+.dropdown-menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  color: var(--white-dim);
+  text-decoration: none;
+  font-size: 0.83rem;
+  font-weight: 600;
+  transition: all 0.18s;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { color: var(--white); background: rgba(192,132,252,0.1); }
+.drop-icon {
+  width: 28px; height: 28px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; flex-shrink: 0;
+}
+
+/* ==================== SIDEBAR SUBMENU ==================== */
+.sidebar-item { position: relative; }
+.sidebar-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  color: var(--white-dim);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+  border: 1px solid transparent;
+  width: 100%;
+  background: none;
+  text-align: right;
+  font-family: var(--font-arabic);
+}
+.sidebar-toggle:hover, .sidebar-item.open .sidebar-toggle {
+  background: linear-gradient(135deg, rgba(124,58,237,0.14), rgba(59,130,246,0.1));
+  border-color: rgba(192,132,252,0.16);
+  color: var(--white);
+}
+.sidebar-toggle .sb-arrow {
+  margin-right: auto;
+  margin-left: 0;
+  font-size: 0.65rem;
+  opacity: 0.65;
+  transition: transform 0.25s;
+}
+.sidebar-item.open .sb-arrow { transform: rotate(180deg); }
+.sidebar-submenu {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.32s cubic-bezier(0.4,0,0.2,1);
+}
+.sidebar-item.open .sidebar-submenu { max-height: 120px; }
+.sidebar-sublink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px 9px 14px;
+  margin: 2px 6px 2px 22px;
+  border-radius: 9px;
+  text-decoration: none;
+  color: var(--white-dim);
+  font-size: 0.84rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+.sidebar-sublink:hover {
+  color: var(--accent);
+  background: rgba(192,132,252,0.08);
+  border-color: rgba(192,132,252,0.12);
+}
+.sub-icon {
+  width: 24px; height: 24px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; flex-shrink: 0;
+}
+
+/* ==================== REVEAL ANIMATIONS ==================== */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1100px) {
+  .products-strip { grid-template-columns: repeat(2, 1fr); }
+  .whyus-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 900px) {
+  .categories-grid { grid-template-columns: 1fr; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { order: -1; }
+  .stat-cards { grid-template-columns: repeat(4, 1fr); }
+  .nav-links { display: none; }
+  .nav-mobile-btn { display: block; }
+  .cta-band { flex-direction: column; text-align: center; padding: 36px 24px; }
+  .cta-content p { margin: 0 auto; }
+  .cta-actions { width: 100%; }
+  .btn-wa-big { justify-content: center; }
+}
+@media (max-width: 600px) {
+  .stat-cards { grid-template-columns: repeat(2, 1fr); }
+  .products-strip { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .whyus-grid { grid-template-columns: 1fr 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .topbar-items { gap: 16px; }
+  .hero-headline { font-size: clamp(2rem, 9vw, 3rem); }
+  .hero-ctas { flex-direction: column; }
+  .btn-primary, .btn-secondary { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR OVERLAY -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo" style="padding: 4px 8px;">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" width="24" height="24">
+          <defs><linearGradient id="sb-lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="#c7d4ff"/></linearGradient></defs>
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#sb-lg)"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">SH Smart DZ</span>
+      </div>
+    </div>
+    <button class="sidebar-close" id="sidebar-close" aria-label="إغلاق">×</button>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="index.html" class="sidebar-link active">
+      <div class="sl-icon">🏠</div>
+      <span>الرئيسية — Accueil</span>
+    </a>
+    <a href="products.html" class="sidebar-link">
+      <div class="sl-icon">📦</div>
+      <span>المنتجات — Produits</span>
+    </a>
+    <div class="sidebar-item" id="sidebar-onduleur">
+      <button class="sidebar-toggle" onclick="toggleSidebarItem('sidebar-onduleur')">
+        <div class="sl-icon">⚡</div>
+        <span>الأندولور — Onduleurs</span>
+        <span class="sb-arrow">▾</span>
+      </button>
+      <div class="sidebar-submenu">
+        <a href="onduleur-landing_hbm.html" class="sidebar-sublink">
+          <div class="sub-icon">⚡</div>
+          HBM
+        </a>
+        <a href="onduleur-landing.html" class="sidebar-sublink">
+          <div class="sub-icon">🏢</div>
+          Icon
+        </a>
+      </div>
+    </div>
+    <a href="stabilisateur-landing.html" class="sidebar-link">
+      <div class="sl-icon">🔋</div>
+      <span>المثبت — Stabilisateurs</span>
+    </a>
+    <a href="batteries-ups-landing.html" class="sidebar-link">
+      <div class="sl-icon">🛡️</div>
+      <span>البطاريات — Batteries UPS</span>
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="https://wa.me/213541773930" class="sidebar-wa-btn" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2c-5.514 0-9.999 4.486-9.999 10 0 1.76.462 3.41 1.268 4.847L2 22l5.293-1.238A9.951 9.951 0 0012 22c5.514 0 10-4.486 10-10S17.513 2 11.999 2z"/></svg>
+      تواصل عبر واتساب
+    </a>
+  </div>
+</aside>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">الرئيسية</a></li>
+      <li><a href="products.html">المنتجات</a></li>
+      <li class="nav-dropdown" id="navbar-onduleur">
+        <a href="#" onclick="toggleNavDropdown(event,'navbar-onduleur')">
+          الأندولور
+          <span class="nav-drop-arrow">▾</span>
+        </a>
+        <div class="dropdown-menu">
+          <a href="onduleur-landing_hbm.html">
+            <div class="drop-icon">⚡</div>
+            HBM
+          </a>
+          <a href="onduleur-landing.html">
+            <div class="drop-icon">🏢</div>
+            Icon
+          </a>
+        </div>
+      </li>
+      <li><a href="stabilisateur-landing.html">المثبت</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <button class="nav-mobile-btn" id="nav-menu-btn" aria-label="القائمة">☰</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <h1 class="hero-headline">
+        حلول <span class="accent">الطاقة</span> والتقنية<br>
+        لكل الجزائر
+      </h1>
+      <p class="hero-sub">
+        Onduleurs, stabilisateurs, batteries UPS — tout ce qu'il vous faut pour protéger vos équipements contre les aléas du réseau électrique algérien.
+      </p>
+      <div class="hero-ctas">
+        <a href="products.html" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          تصفح المنتجات
+        </a>
+        <a href="https://wa.me/213541773930" class="btn-secondary" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2c-5.514 0-9.999 4.486-9.999 10 0 1.76.462 3.41 1.268 4.847L2 22l5.293-1.238A9.951 9.951 0 0012 22c5.514 0 10-4.486 10-10S17.513 2 11.999 2z"/></svg>
+          استفسار
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-pill"><span class="trust-dot">✦</span>ضمان سنتين</div>
+        <div class="trust-pill"><span class="trust-dot">✦</span>69 ولاية</div>
+        <div class="trust-pill"><span class="trust-dot">✦</span>الدفع عند الاستلام</div>
+        <div class="trust-pill"><span class="trust-dot">✦</span>دعم تقني</div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="stat-cards">
+        <div class="stat-card reveal">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">منتج متوفر — Produits disponibles</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-1">
+          <div class="stat-number">69</div>
+          <div class="stat-label">ولاية — Wilayas desservies</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-2">
+          <div class="stat-number">2</div>
+          <div class="stat-label">سنة ضمان — Ans de garantie</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-3">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">دعم تقني — Support technique</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="section categories-section">
+  <div class="section-inner">
+    <div class="text-center" style="margin-bottom: 50px;">
+      <div class="section-label reveal">أقسام المنتجات — Catégories</div>
+      <h2 class="section-title reveal reveal-delay-1">تصفح حسب <span class="accent-text">الفئة</span></h2>
+      <p class="section-sub reveal reveal-delay-2">من الأندولور إلى البطاريات — كل ما تحتاجه لحماية أجهزتك من انقطاع الكهرباء</p>
+    </div>
+    <div class="categories-grid">
+      <a href="onduleur-landing.html" class="category-card reveal">
+        <div class="category-icon">⚡</div>
+        <div class="category-content">
+          <div class="category-fr">Onduleurs UPS</div>
+          <div class="category-title">الأندولور</div>
+          <div class="category-desc">Online double conversion & Line interactive — من 650VA إلى 10KVA. Rack & Tour.</div>
+          <div class="category-count">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.3C18 2.56 16.44 1 14.5 1c-1.5 0-2.8.99-3.5 2.45L9 6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg>
+            11 منتج متوفر
+          </div>
+        </div>
+        <div class="category-arrow">←</div>
+      </a>
+      <a href="stabilisateur-landing.html" class="category-card reveal reveal-delay-1">
+        <div class="category-icon">🔋</div>
+        <div class="category-content">
+          <div class="category-fr">Stabilisateurs</div>
+          <div class="category-title">مثبتات الجهد</div>
+          <div class="category-desc">Stabilisateurs HBM 1200VA à 2000VA — حماية من تذبذب الجهد الكهربائي.</div>
+          <div class="category-count">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.3C18 2.56 16.44 1 14.5 1c-1.5 0-2.8.99-3.5 2.45L9 6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg>
+            3 منتجات متوفرة
+          </div>
+        </div>
+        <div class="category-arrow">←</div>
+      </a>
+      <a href="batteries-ups-landing.html" class="category-card reveal reveal-delay-2">
+        <div class="category-icon">🛡️</div>
+        <div class="category-content">
+          <div class="category-fr">Batteries UPS</div>
+          <div class="category-title">بطاريات UPS</div>
+          <div class="category-desc">Batteries de remplacement & kits complets — للأندولور والأنظمة الحيوية.</div>
+          <div class="category-count">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.3C18 2.56 16.44 1 14.5 1c-1.5 0-2.8.99-3.5 2.45L9 6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg>
+            قريباً — Bientôt
+          </div>
+        </div>
+        <div class="category-arrow">←</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="section featured-section">
+  <div class="section-inner">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <div class="section-label reveal">أبرز المنتجات — Produits vedettes</div>
+      </div>
+      <a href="products.html" class="btn-secondary reveal" style="white-space: nowrap;">عرض الكل ←</a>
+    </div>
+    <div class="products-strip">
+      <a href="onduleur-landing.html" class="product-card reveal">
+        <div class="product-img">
+          ⚡
+          <div class="product-badge">الأكثر مبيعاً</div>
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Onduleur Online Rackable</div>
+          <div class="product-name">Onduleur 2KVA ON-LINE Rackable HBM</div>
+          <div class="product-price-row">
+            <span class="product-price-val">58 000</span>
+            <span class="product-price-cur">DZD</span>
+          </div>
+          <div class="product-cta-mini">Commander →</div>
+        </div>
+      </a>
+      <a href="onduleur-landing.html" class="product-card reveal reveal-delay-1">
+        <div class="product-img">🏢</div>
+        <div class="product-body">
+          <div class="product-cat">Onduleur Line Interactive Tour</div>
+          <div class="product-name">Onduleur 3KVA LINE INTERACTIVE Tour Medical HBM</div>
+          <div class="product-price-row">
+            <span class="product-price-val">56 500</span>
+            <span class="product-price-cur">DZD</span>
+          </div>
+          <div class="product-cta-mini">Commander →</div>
+        </div>
+      </a>
+      <a href="onduleur-landing.html" class="product-card reveal reveal-delay-2">
+        <div class="product-img">
+          🔋
+          <div class="product-badge">جديد</div>
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Onduleur HBM UPS</div>
+          <div class="product-name">Onduleur HBM UPS 3000VA + LCD 3S Prise + Fan</div>
+          <div class="product-price-row">
+            <span class="product-price-val">50 000</span>
+            <span class="product-price-cur">DZD</span>
+          </div>
+          <div class="product-cta-mini">Commander →</div>
+        </div>
+      </a>
+      <a href="stabilisateur-landing.html" class="product-card reveal reveal-delay-3">
+        <div class="product-img">⚙️</div>
+        <div class="product-body">
+          <div class="product-cat">Stabilisateur HBM</div>
+          <div class="product-name">Onduleur Stabilisateur HBM 2000VA Afficheur 4S</div>
+          <div class="product-price-row">
+            <span class="product-price-val">24 000</span>
+            <span class="product-price-cur">DZD</span>
+          </div>
+          <div class="product-cta-mini">Commander →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section whyus-section">
+  <div class="section-inner">
+    <div class="text-center" style="margin-bottom: 50px;">
+      <div class="section-label reveal">لماذا نحن — Pourquoi nous</div>
+      <h2 class="section-title reveal reveal-delay-1">متجر <span class="accent-text">موثوق</span> بالجزائر</h2>
+    </div>
+    <div class="whyus-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">🚚</div>
+        <div class="why-title">توصيل لجميع الولايات</div>
+        <div class="why-desc">شحن سريع وموثوق لجميع الـ 69 ولاية عبر شركاء النقل الموثوقين</div>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">✅</div>
+        <div class="why-title">ضمان سنتين</div>
+        <div class="why-desc">منتجات HBM الأصيلة مع ضمان كامل لمدة سنتين + دعم فني متخصص</div>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">💳</div>
+        <div class="why-title">الدفع عند الاستلام</div>
+        <div class="why-desc">تسلّم منتجك أولاً ثم ادفع — تسوق بثقة وأمان تام بدون أي مخاطرة</div>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">🛠️</div>
+        <div class="why-title">دعم تقني متخصص</div>
+        <div class="why-desc">فريق تقني جاهز لمساعدتك في الاختيار والتركيب والصيانة على مدار الساعة</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="section cta-section">
+  <div class="section-inner">
+    <div class="cta-band reveal">
+      <div class="cta-content">
+        <h2>هل تحتاج <span class="accent-text">استشارة تقنية</span>؟</h2>
+        <p>فريقنا جاهز لمساعدتك في اختيار الأندولور المناسب لاحتياجاتك — مجاناً وفوراً عبر واتساب.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="https://wa.me/213541773930?text=مرحباً، أحتاج استشارة تقنية لاختيار أندولور مناسب" class="btn-wa-big" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2c-5.514 0-9.999 4.486-9.999 10 0 1.76.462 3.41 1.268 4.847L2 22l5.293-1.238A9.951 9.951 0 0012 22c5.514 0 10-4.486 10-10S17.513 2 11.999 2z"/></svg>
+          تواصل الآن عبر واتساب
+        </a>
+        <div class="cta-sub">متاح 24/7 — يرد الفريق خلال دقائق</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo" style="padding: 0; margin-bottom: 12px;">
+          <div class="logo-icon" style="width: 32px; height: 32px; border-radius: 8px;">
+            <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
+              <defs><linearGradient id="ft-lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="#c7d4ff"/></linearGradient></defs>
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#ft-lg)"/>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <span class="logo-name" style="font-size: 1rem;">SH Smart DZ</span>
+          </div>
+        </div>
+        <p>متجر تقني متخصص في حلول الطاقة والحماية الكهربائية للجزائر — Votre partenaire de confiance pour les solutions UPS en Algérie.</p>
+        <div class="footer-socials">
+          <a href="https://wa.me/213541773930" class="social-btn" aria-label="WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2c-5.514 0-9.999 4.486-9.999 10 0 1.76.462 3.41 1.268 4.847L2 22l5.293-1.238A9.951 9.951 0 0012 22c5.514 0 10-4.486 10-10S17.513 2 11.999 2z"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>المنتجات — Produits</h4>
+        <ul class="footer-links">
+          <li><a href="onduleur-landing.html">Onduleurs Online Rackable</a></li>
+          <li><a href="onduleur-landing.html">Onduleurs Line Interactive</a></li>
+          <li><a href="stabilisateur-landing.html">Stabilisateurs HBM</a></li>
+          <li><a href="batteries-ups-landing.html">Batteries UPS</a></li>
+          <li><a href="products.html">Tous les produits</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>المعلومات — Info</h4>
+        <ul class="footer-links">
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Livraison & Retour</a></li>
+          <li><a href="#">Garantie</a></li>
+          <li><a href="#">FAQ technique</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>اتصل بنا — Contact</h4>
+        <ul class="footer-links">
+          <li><a href="https://wa.me/213541773930">📱 05 41 77 39 30</a></li>
+          <li><a href="#">📧 contact@shsmart.dz</a></li>
+          <li><a href="#">📍 الجزائر العاصمة</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-trust" style="margin-bottom: 20px; justify-content: center; display: flex; flex-wrap: wrap; gap: 12px;">
+      <div class="trust-badge">✅ ضمان سنتين — Garantie 2 ans</div>
+      <div class="trust-badge">🚚 توصيل 69 ولاية</div>
+      <div class="trust-badge">💳 الدفع عند الاستلام</div>
+      <div class="trust-badge">🛡️ منتجات HBM أصيلة</div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SH Smart DZ — جميع الحقوق محفوظة</span>
+      <span>Powered by PowerShield Pro™ Technology</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─── Navbar Dropdown ───
+function toggleNavDropdown(event, id) {
+  event.preventDefault();
+  event.stopPropagation();
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  // close all open dropdowns first
+  document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+// Close dropdown on outside click
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
+  }
+});
+
+// ─── Sidebar Submenu ───
+function toggleSidebarItem(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+// Mobile nav
+const menuBtn = document.getElementById('nav-menu-btn');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('sidebar-overlay');
+const closeBtn = document.getElementById('sidebar-close');
+
+function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('open'); }
+function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('open'); }
+
+menuBtn && menuBtn.addEventListener('click', openSidebar);
+closeBtn && closeBtn.addEventListener('click', closeSidebar);
+overlay && overlay.addEventListener('click', closeSidebar);
+
+// Reveal on scroll
+const revealEls = document.querySelectorAll('.reveal');
+if (revealEls.length) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+}
+</script>
+</body>
+</html>

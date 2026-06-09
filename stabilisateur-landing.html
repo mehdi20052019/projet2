@@ -1238,10 +1238,10 @@ background: transparent;
 .form-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .form-row > .form-group { min-width: 0; }
 .order-product-compact {
+  border: 1px solid rgba(10,127,245,0.18);
   border-radius: 8px;
+  background: linear-gradient(135deg, rgba(10,127,245,0.1), rgba(255,255,255,0.025));
   padding: 10px;
-  border-color: rgba(255, 255, 255, .10);
-  background: rgba(255, 255, 255, .05);
 }
 .order-product-row {
   display: grid;
@@ -1257,7 +1257,7 @@ background: transparent;
   font-weight: 900;
 }
 .order-price-summary {
-  margin: 40px 0 5px;
+  margin: 18px 0 20px;
   padding: 4px 14px;
   border: 1px solid rgba(10,127,245,0.18);
   border-radius: 8px;
@@ -2605,22 +2605,95 @@ body{
 </style>
 </head>
 <body>
- 
+
 <!-- ===== STORE BACK NAV ===== -->
 <div style="background:linear-gradient(90deg,rgba(124,58,237,.12),rgba(59,130,246,.08));border-bottom:1px solid rgba(255,255,255,.07);padding:10px clamp(16px,5vw,80px);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
   <div style="display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--white-dim);">
-    <a href="index.html" style="color:var(--accent);text-decoration:none;font-weight:700;display:flex;align-items:center;gap:5px;">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
-      SH Smart DZ
-    </a>
+    <a href="index.html" style="color:var(--accent);text-decoration:none;font-weight:700;display:flex;align-items:center;gap:5px;">← SH Smart DZ</a>
     <span style="color:rgba(255,255,255,.2);">›</span>
-    <a href="products.html" style="color:var(--white-dim);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--white-dim)'">المنتجات</a>
+    <a href="products.html" style="color:var(--white-dim);text-decoration:none;">المنتجات</a>
     <span style="color:rgba(255,255,255,.2);">›</span>
-    <span>الأندولور — Onduleurs</span>
+    <span>المثبت — Stabilisateurs</span>
   </div>
-  
 </div>
 
+<!-- ===== SIDEBAR OVERLAY ===== -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+ 
+<!-- ===== SIDEBAR ===== -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-glow"></div>
+  
+  <!-- SIDEBAR HEADER (MATCHES NAVBAR — FLOWSYNC STYLE) -->
+  <div class="sidebar-header-tech">
+    <div class="sidebar-logo-wrap">
+      <!-- Exact same FlowSync icon as navbar, scaled down slightly -->
+      <div class="sidebar-logo-icon-tech">
+        <svg width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="sb-grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#5a60e8"/>
+              <stop offset="100%" stop-color="#8b5cf6"/>
+            </linearGradient>
+          </defs>
+          <circle cx="18" cy="18" r="14" stroke="url(#sb-grad)" stroke-width="3.2" fill="none" opacity="0.95"/>
+          <circle cx="18" cy="18" r="8.5" stroke="url(#sb-grad)" stroke-width="2.6" fill="none" opacity="0.85"/>
+          <path d="M18 7 A11 11 0 0 0 18 29" stroke="#4f72f0" stroke-width="2.8" fill="none" stroke-linecap="round" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="sidebar-logo-text-tech">SHSMART</span>DZ</div>
+    </div>
+  </div>
+ 
+  <div class="sidebar-label">Navigation</div>
+ 
+  <nav class="sidebar-nav">
+    <a class="sidebar-link" onclick="scrollToSection('hero')">
+      <div class="sl-icon">🏠</div>
+      <span class="sl-text">الرئيسية — Accueil</span>
+      <span class="sl-arrow">◂</span>
+    </a>
+    <a class="sidebar-link" onclick="scrollToSection('problem')">
+      <div class="sl-icon">⚡</div>
+      <span class="sl-text">المشكل — Problème</span>
+      <span class="sl-arrow">◂</span>
+    </a>
+    <a class="sidebar-link" onclick="scrollToSection('features')">
+      <div class="sl-icon">🛡</div>
+      <span class="sl-text">المزايا — Fonctionnalités</span>
+      <span class="sl-arrow">◂</span>
+    </a>
+    <a class="sidebar-link" onclick="scrollToSection('other-products')">
+      <div class="sl-icon">▣</div>
+      <span class="sl-text">منتجات أخرى — Autres</span>
+      <span class="sl-arrow">◂</span>
+    </a>
+    <a class="sidebar-link" onclick="scrollToSection('order')">
+      <div class="sl-icon">🛒</div>
+      <span class="sl-text">الطلب — Commander</span>
+      <span class="sl-arrow">◂</span>
+    </a>
+    <a class="sidebar-link" onclick="scrollToSection('faq-section')">
+      <div class="sl-icon">❓</div>
+      <span class="sl-text">الأسئلة — FAQ</span>
+      <span class="sl-arrow">◂</span>
+    </a>
+  </nav>
+ 
+  <div class="sidebar-footer">
+    <a href="https://wa.me/213541773930" class="sidebar-wa-btn" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2c-5.514 0-9.999 4.486-9.999 10 0 1.76.462 3.41 1.268 4.847L2 22l5.293-1.238A9.951 9.951 0 0012 22c5.514 0 10-4.486 10-10S17.513 2 11.999 2z"/></svg>
+      تواصل عبر واتساب
+    </a>
+  </div>
+</aside>
+ 
+<!-- ===== SIDEBAR TOGGLE BUTTON ===== -->
+<button class="sidebar-toggle" id="sidebar-toggle" aria-label="القائمة الجانبية">
+  <div class="toggle-bar"></div>
+  <div class="toggle-bar"></div>
+  <div class="toggle-bar"></div>
+</button>
  
 
 <!-- ===== HERO ===== -->
@@ -2656,567 +2729,54 @@ body{
       
     </div>
     <div class="hero-visual">
-
-<style>
-/* ── New product card — scoped to .npc-* ─────────────────────────────────
-   Uses ONLY the same CSS variables the old card used so neo-glass-theme
-   overrides apply identically.
-   ────────────────────────────────────────────────────────────────────── */
-.npc-wrap {
-  display: flex;
-  justify-content: center;
-  direction: ltr;
-  width: 100%;
-}
-.npc-card {
-  width: 100%;
-  max-width: 440px;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)),
-    linear-gradient(135deg, rgba(17,12,41,.96), rgba(8,9,21,.88));
-  border-radius: 26px;
-  border: 1px solid rgba(255,255,255,.10);
-  box-shadow: var(--shadow-card);
-  overflow: visible;
-  position: relative;
-  backdrop-filter: blur(22px) saturate(1.25);
-  -webkit-backdrop-filter: blur(22px) saturate(1.25);
-}
-/* Top line — same gradient as .product-3d-wrapper::before in neo-glass */
-.npc-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(192,132,252,.7), rgba(34,211,238,.6), transparent);
-  border-radius: 26px 26px 0 0;
-}
-
-/* HEADER */
-.npc-header {
-  padding: 20px 22px 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(255,255,255,.08);
-}
-.npc-brand-name {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-.npc-brand-sub {
-  font-size: 11px;
-  color: var(--muted);
-  font-family: var(--font-display);
-  letter-spacing: 0.06em;
-  margin-top: 3px;
-}
-.npc-status {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 999px;
-  padding: 5px 12px;
-  font-size: 11px;
-  color: var(--accent);
-  font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-}
-.npc-status-dot {
-  width: 6px; height: 6px;
-  background: var(--accent);
-  border-radius: 50%;
-  animation: npcBlink 1.8s ease-in-out infinite;
-}
-@keyframes npcBlink {
-  0%,100% { opacity: 1; }
-  50% { opacity: 0.25; }
-}
-
-/* TYPE SELECTOR */
-.npc-type-section { padding: 18px 22px 0; }
-.npc-section-label {
-  font-size: 10px;
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 10px;
-}
-.npc-type-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-.npc-type-btn {
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 18px;
-  padding: 14px 10px;
-  cursor: pointer;
-  transition: all 0.22s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 7px;
-  position: relative;
-  overflow: hidden;
-  color: var(--muted);
-}
-.npc-type-btn::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 2px;
-  border-radius: 0 0 18px 18px;
-  transform: scaleX(0);
-  transition: transform 0.22s;
-}
-.npc-type-btn:hover {
-  background: rgba(192,132,252,.12);
-  border-color: rgba(192,132,252,.26);
-  color: var(--white);
-  transform: translateY(-1px);
-}
-.npc-type-btn.active {
-  background: rgba(255,255,255,.05);
-  border-color: var(--gold);
-  color: var(--gold);
-  box-shadow: 0 0 20px rgba(249,168,212,.12);
-}
-.npc-type-btn.active::after {
-  background: var(--gold);
-  transform: scaleX(1);
-}
-.npc-type-icon { font-size: 22px; line-height: 1; }
-.npc-type-label {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.1em;
-  transition: color 0.22s;
-}
-.npc-type-form {
-  font-size: 10px;
-  font-family: var(--font-display);
-  letter-spacing: 0.06em;
-  opacity: .7;
-}
-.npc-check {
-  position: absolute;
-  top: 8px; right: 8px;
-  width: 16px; height: 16px;
-  background: var(--gold);
-  border-radius: 50%;
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-.npc-type-btn.active .npc-check { display: flex; }
-.npc-check-svg {
-  width: 8px; height: 8px;
-  fill: none;
-  stroke: var(--black, #04040b);
-  stroke-width: 2;
-  stroke-linecap: round;
-}
-
-/* KVA SELECTOR */
-.npc-kva-section { padding: 16px 22px 13px; }
-.npc-kva-grid { display: flex; gap: 7px; flex-wrap: wrap; }
-.npc-kva-btn {
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 18px;
-  padding: 8px 16px;
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: rgba(248,247,255,.86);
-  cursor: pointer;
-  transition: all 0.18s;
-  display: none;
-}
-.npc-kva-btn:hover {
-  background: rgba(192,132,252,.12);
-  border-color: rgba(192,132,252,.26);
-  color: var(--white);
-  transform: translateY(-1px);
-}
-.npc-kva-btn.active {
-  background: rgba(192,132,252,.12);
-  border-color: rgba(192,132,252,.4);
-  color: var(--accent);
-}
-.npc-kva-btn.visible { display: block; }
-
-/* PRODUCT IMAGE ZONE */
-.npc-image-zone {
-  background: rgba(255,255,255,.02);
-  height: 200px;
-  position: relative;
-  overflow: hidden;
-    display: initial;
-      align-items: center;
-  justify-content: center;
-}
-.npc-image-zone::before {
-  content: '';
-  position: absolute;
-  top: -40px; left: 50%;
-  transform: translateX(-50%);
-  width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(192,132,252,.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-.npc-img-wrap {
-  width: 140px; height: 140px;
-  position: relative;
-  transition: transform 0.4s;
-}
-.npc-img-wrap:hover { transform: scale(1.04); }
-.npc-img-label {
-  position: absolute;
-  bottom: 10px; right: 12px;
-  font-size: 10px;
-  color: var(--muted);
-  font-family: var(--font-display);
-  letter-spacing: 0.08em;
-}
-.npc-img-badge {
-  position: absolute;
-  top: 12px; left: 12px;
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(192,132,252,.3);
-  border-radius: 10px;
-  padding: 5px 10px;
-  font-family: var(--font-display);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-/* SPECS — reuses exact same classes as old card */
-.npc-specs {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-padding: 17px 1px 10px;
-  border-top: 1px solid rgba(255,255,255,.08);
-  background: rgba(255,255,255,.02);
-}
-.npc-spec {
-  text-align: center;
-  flex: 1;
-  border-left: 1px solid rgba(255,255,255,.08);
-}
-.npc-spec:first-child { border-left: none; }
-.npc-spec-val {
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--white);
-  text-shadow: 0 0 20px rgba(192,132,252,.22);
-  letter-spacing: 0.02em;
-  line-height: 1;
-  margin-bottom: 4px;
-  transition: all 0.28s;
-}
-.npc-spec-key {
-  font-size: 10px;
-  color: var(--muted);
-  font-family: var(--font-display);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-/* PRICE — same look as .product-price in old card */
-.npc-price-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 16px 20px 18px;
-  border-top: 1px solid rgba(255,255,255,.08);
-  background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.018));
-}
-.npc-price-copy {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  min-width: 0;
-  text-align: right;
-}
-.npc-price-label {
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-family: var(--font-display);
-}
-.npc-price-note {
-  font-size: 12px;
-  color: var(--white-dim);
-  font-family: var(--font-arabic);
-}
-.npc-price-main {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  flex-shrink: 0;
-  direction: ltr;
-}
-.npc-price-val {
-  font-family: var(--font-display);
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.02em;
-  color: var(--white);
-  text-shadow: 0 0 20px rgba(192,132,252,.22);
-  transition: all 0.28s;
-}
-.npc-price-currency {
-  font-size: 11px;
-  font-weight: 700;
-  color: rgba(248,247,255,.62);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-family: var(--font-display);
-}
-
-/* HEADER for brand — stacks inside .npc-header */
-.npc-brand { display: flex; flex-direction: column; }
-
-/* ACTIONS — reuses .product-actions layout */
-.npc-actions {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 10px;
-  padding: 0 20px 22px;
-  background: rgba(255,255,255,.02);
-}
-/* btn-compact & btn-primary are already defined globally — reuse them */
-
-/* FOOTER TRUST */
-.npc-footer {
-  border-top: 1px solid rgba(255,255,255,.08);
-  padding: 12px 22px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.npc-trust {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  color: var(--muted);
-  font-family: var(--font-arabic);
-  font-weight: 600;
-}
-.npc-trust-icon { color: var(--accent); }
-</style>
-
-<div class="npc-wrap" role="region" aria-label="كارد منتج الأندولور">
-  <div class="npc-card">
-
-    <!-- HEADER -->
-    <div class="npc-header">
-      <div class="npc-brand">
-        <div class="npc-brand-name" style="text-align: left;">Onduleur iCON</div>
-        <div class="npc-brand-sub">Online Double Conversion</div>
-      </div>
-      <div class="npc-status">
-        <span class="npc-status-dot"></span>
-        متوفر الآن
-      </div>
+  <div class="product-showcase">
+    <div class="type-selector">
+      <button class="type-btn" data-type="tour">TOUR &#9650;</button>
+      <button class="type-btn" data-type="rackable">RACKABLE &#9632;</button>
     </div>
-
-    <!-- TYPE SELECTOR -->
-    <div class="npc-type-section">
-      <div class="npc-section-label">نوع الجهاز — Format</div>
-      <div class="npc-type-grid">
-        <button class="npc-type-btn active" id="npc-btn-rackable" onclick="npcSelectType('rackable')">
-          <div class="npc-check">
-            <svg class="npc-check-svg" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg>
-          </div>
-          <div class="npc-type-icon">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <rect x="2" y="8" width="24" height="12" rx="2" stroke="currentColor" stroke-width="1.5" fill="rgba(249,168,212,0.07)" opacity=".8"/>
-              <rect x="5" y="11" width="8" height="6" rx="1" fill="rgba(249,168,212,0.15)"/>
-              <circle cx="19" cy="14" r="2" fill="rgba(249,168,212,0.5)"/>
-              <line x1="14" y1="11" x2="14" y2="17" stroke="rgba(249,168,212,0.3)" stroke-width="1"/>
-            </svg>
-          </div>
-          <div class="npc-type-label">RACKABLE</div>
-          <div class="npc-type-form">Format rack 1U–2U</div>
-        </button>
-        <button class="npc-type-btn" id="npc-btn-tour" onclick="npcSelectType('tour')">
-          <div class="npc-check">
-            <svg class="npc-check-svg" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg>
-          </div>
-          <div class="npc-type-icon">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <rect x="8" y="3" width="12" height="22" rx="2" stroke="currentColor" stroke-width="1.5" fill="rgba(249,168,212,0.07)" opacity=".8"/>
-              <rect x="11" y="6" width="6" height="4" rx="1" fill="rgba(249,168,212,0.15)"/>
-              <circle cx="14" cy="20" r="2" fill="rgba(249,168,212,0.5)"/>
-              <line x1="11" y1="13" x2="17" y2="13" stroke="rgba(249,168,212,0.3)" stroke-width="1"/>
-              <line x1="11" y1="16" x2="17" y2="16" stroke="rgba(249,168,212,0.3)" stroke-width="1"/>
-            </svg>
-          </div>
-          <div class="npc-type-label">TOUR</div>
-          <div class="npc-type-form">Format vertical tower</div>
-        </button>
-      </div>
-    </div>
-
-    <!-- KVA SELECTOR -->
-    <div class="npc-kva-section">
-      <div class="npc-section-label">السعة — Capacité</div>
-      <div class="npc-kva-grid">
-        <!-- RACKABLE: 1 KVA / 2 KVA / 3 KVA -->
-        <button class="npc-kva-btn visible active" data-type="rackable" data-kva="1kva" data-price="42000" data-power="900W" data-bat="2/ 9Ah" data-com="0ms" data-img="123kva.avif" onclick="npcSelKva(this)">1 KVA</button>
-        <button class="npc-kva-btn visible" data-type="rackable" data-kva="2kva" data-price="58000" data-power="1 800W" data-bat="4/ 9Ah" data-com="0ms" data-img="123kva.avif" onclick="npcSelKva(this)">2 KVA</button>
-        <button class="npc-kva-btn visible" data-type="rackable" data-kva="3kva" data-price="78000" data-power="2 700W" data-bat="6/ 9Ah" data-com="0ms" data-img="123kva.avif" onclick="npcSelKva(this)">3 KVA</button>
-        <!-- TOUR: 3 KVA / 6 KVA / 10 KVA -->
-        <button class="npc-kva-btn" data-type="tour" data-kva="3kva" data-price="75000" data-power="2 700W" data-bat="6/ 9Ah" data-com="0ms" data-img="610kvaTour.avif" onclick="npcSelKva(this)">3 KVA</button>
-        <button class="npc-kva-btn" data-type="tour" data-kva="6kva" data-price="126000" data-power="5 400W" data-bat="16/ 7Ah" data-com="0ms" data-img="610kvaTour.avif" onclick="npcSelKva(this)">6 KVA</button>
-        <button class="npc-kva-btn" data-type="tour" data-kva="10kva" data-price="188000" data-power="9 000W" data-bat="16/ 9Ah" data-com="0ms" data-img="610kvaTour.avif" onclick="npcSelKva(this)">10 KVA</button>
-      </div>
-    </div>
-
-    <!-- PRODUCT IMAGE -->
-    <div class="npc-image-zone">
+<div class="capacity-selector fade-up delay-3" id="kva-selector">
+  <button class="kva-btn" data-type="rackable" data-kva="1kva">1 KVA</button>
+  <button class="kva-btn" data-type="rackable" data-kva="2kva">2 KVA</button>
+  <button class="kva-btn" data-type="rackable" data-kva="3kva">3 KVA</button>
+  <button class="kva-btn" data-type="tour" data-kva="3kva">3 KVA</button>
+  <button class="kva-btn" data-type="tour" data-kva="6kva">6 KVA</button>
+  <button class="kva-btn" data-type="tour" data-kva="10kva">10 KVA</button>
+</div>
+    <div class="product-3d-wrapper">
       <div class="ups-render">
-        <img id="ups-product-img" src="123kva.avif" alt="Icon UPS" class="ups-real-image">
+        <img id="ups-product-img" src="ups_rackable_high_res.png" alt="Icon UPS" class="ups-real-image">
+      </div>
+      <div class="specs-strip" id="specs-strip">
+        <div class="spec">
+          <div class="spec-power" id="spec-power">-</div>
+          <div class="spec-lbl">Puissance</div>
+        </div>
+        <div class="spec">
+          <div class="spec-battery" id="spec-battery">-</div>
+          <div class="spec-lbl">Batterie</div>
+        </div>
+        <div class="spec">
+          <div class="spec-eco" id="spec-eco">-</div>
+          <div class="spec-lbl">Mode ECO</div>
+        </div>
+      </div>
+      <div class="product-price" aria-live="polite">
+        <div class="product-price-copy">
+          <span class="product-price-label">السعر — Prix</span>
+          <span class="product-price-note" id="product-price-note">Rackable 1 KVA</span>
+        </div>
+        <div class="product-price-main">
+          <span class="product-price-value" id="product-price-value">65 000</span>
+          <span class="product-price-currency" id="product-price-currency">DZD</span>
+        </div>
+      </div>
+      <div class="product-actions">
+        <button class="btn btn-compact">Fiche Tech</button>
+        <button class="btn btn-primary" onclick="scrollToSection('order')">Commander maintenant</button>
       </div>
     </div>
-
-    <!-- SPECS -->
-    <div class="npc-specs">
-      <div class="npc-spec">
-        <div class="npc-spec-val" id="npc-spec-power">900W</div>
-        <div class="npc-spec-key">Puissance</div>
-      </div>
-      <div class="npc-spec">
-        <div class="npc-spec-val" id="npc-spec-bat" style="font-size:17px;">24V / 18Ah</div>
-        <div class="npc-spec-key">Batterie</div>
-      </div>
-      <div class="npc-spec">
-        <div class="npc-spec-val" id="npc-spec-com">0ms</div>
-        <div class="npc-spec-key">Transfert</div>
-      </div>
-    </div>
-
-    <!-- PRICE -->
-    <div class="npc-price-row" aria-live="polite">
-      <div class="npc-price-copy">
-        <span class="npc-price-label">السعر — Prix</span>
-        <span class="npc-price-note" id="npc-price-note">Rackable 1 KVA</span>
-      </div>
-      <div class="npc-price-main">
-        <span class="npc-price-val" id="npc-price-val">42 000</span>
-        <span class="npc-price-currency">DZD</span>
-      </div>
-    </div>
-
-    <!-- ACTIONS -->
-    <div class="npc-actions">
-      <button class="btn btn-compact">Fiche Tech</button>
-      <button class="btn btn-primary" onclick="scrollToSection('order')">Commander maintenant</button>
-    </div>
-
   </div>
 </div>
-
-<script>
-(function(){
-  const npcPrices = {
-    rackable:{'1kva':42000,'2kva':58000,'3kva':78000},
-    tour:{'3kva':75000,'6kva':126000,'10kva':188000}
-  };
-  let npcType='rackable', npcKva='1kva';
-
-  window.npcSelectType = function(type){
-    npcType = type;
-    document.querySelectorAll('.npc-type-btn').forEach(b=>b.classList.remove('active'));
-    document.getElementById('npc-btn-'+type).classList.add('active');
-    document.querySelectorAll('.npc-kva-btn').forEach(b=>{
-      b.classList.remove('visible','active');
-      if(b.dataset.type===type) b.classList.add('visible');
-    });
-    const first=document.querySelector('.npc-kva-btn[data-type="'+type+'"]');
-    if(first){first.classList.add('active');npcKva=first.dataset.kva;npcUpdate(first);}
-  };
-
-  window.npcSelKva = function(btn){
-    document.querySelectorAll('.npc-kva-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    npcKva=btn.dataset.kva;
-    npcUpdate(btn);
-  };
-
-  function npcUpdate(btn){
-    const typeLabel = npcType==='rackable' ? 'Rackable' : 'Tour';
-    const kvaLabel  = btn.dataset.kva.replace('kva',' KVA').toUpperCase();
-    const label     = typeLabel+' '+kvaLabel;
-
-    /* price note */
-    document.getElementById('npc-price-note').textContent = label;
-
-    /* specs */
-    const powerVal = btn.dataset.power || '—';
-    const batVal   = btn.dataset.bat   || '—';
-    const comVal   = btn.dataset.com   || '0ms';
-
-    document.getElementById('npc-spec-power').textContent = powerVal;
-
-    /* battery: reduce font size for long strings like "192V / 144Ah" */
-    const batEl = document.getElementById('npc-spec-bat');
-    batEl.textContent = batVal;
-    batEl.style.fontSize = batVal.length > 10 ? '14px' : batVal.length > 7 ? '17px' : '22px';
-
-    document.getElementById('npc-spec-com').textContent = comVal;
-
-    /* image */
-    const imgSrc = btn.dataset.img;
-    if(imgSrc){
-      const imgEl = document.getElementById('ups-product-img');
-      if(imgEl){
-        imgEl.classList.add('image-fade-out');
-        setTimeout(()=>{
-          imgEl.src = imgSrc;
-          imgEl.alt = label;
-          imgEl.classList.remove('image-fade-out');
-        }, 200);
-      }
-    }
-
-    /* price */
-    const p = npcPrices[npcType][npcKva];
-    if(p) document.getElementById('npc-price-val').textContent = p.toLocaleString('fr-DZ');
-  }
-
-  /* Init: Rackable 1KVA on load */
-  document.addEventListener('DOMContentLoaded', function(){
-    const initBtn = document.querySelector('.npc-kva-btn[data-type="rackable"][data-kva="1kva"]');
-    if(initBtn) npcUpdate(initBtn);
-  });
-})();
-</script>
-</div><!-- /hero-visual -->
 <div class="hero-trust">
         <div class="trust-item"><span class="trust-icon">✦</span>ضمان سنتين</div>
         <div class="trust-item"><span class="trust-icon">✦</span>69 ولاية</div>
@@ -3382,6 +2942,7 @@ padding: 17px 1px 10px;
  
       <div class="order-form">
         <div class="form-title">نموذج الطلب — Formulaire de Commande</div>
+        <div class="form-sub">أكمل بياناتك وسنتصل بك لتأكيد الطلب خلال ساعات</div>
         <div class="form-group">
           <label class="form-label">الاسم الكامل — Nom Complet *</label>
           <input type="text" class="form-input" id="customer-name" placeholder="الاسم واللقب" required>

@@ -2621,6 +2621,7 @@ body{
   
 </div>
 
+
  
 
 <!-- ===== HERO ===== -->
@@ -3035,7 +3036,7 @@ padding: 17px 1px 10px;
     <!-- HEADER -->
     <div class="npc-header">
       <div class="npc-brand">
-        <div class="npc-brand-name" style="text-align: left;">Onduleur iCON</div>
+        <div class="npc-brand-name" style="text-align: left;">ONDULEUR HBM</div>
         <div class="npc-brand-sub">Online Double Conversion</div>
       </div>
       <div class="npc-status">
@@ -3061,7 +3062,7 @@ padding: 17px 1px 10px;
             </svg>
           </div>
           <div class="npc-type-label">RACKABLE</div>
-          <div class="npc-type-form">Format rack 1U–2U</div>
+          <div class="npc-type-form">ON-LINE</div>
         </button>
         <button class="npc-type-btn" id="npc-btn-tour" onclick="npcSelectType('tour')">
           <div class="npc-check">
@@ -3077,7 +3078,7 @@ padding: 17px 1px 10px;
             </svg>
           </div>
           <div class="npc-type-label">TOUR</div>
-          <div class="npc-type-form">Format vertical tower</div>
+          <div class="npc-type-form">LINE INTERACTIVE</div>
         </button>
       </div>
     </div>
@@ -3086,14 +3087,15 @@ padding: 17px 1px 10px;
     <div class="npc-kva-section">
       <div class="npc-section-label">السعة — Capacité</div>
       <div class="npc-kva-grid">
-        <!-- RACKABLE: 1 KVA / 2 KVA / 3 KVA -->
-        <button class="npc-kva-btn visible active" data-type="rackable" data-kva="1kva" data-price="42000" data-power="900W" data-bat="2/ 9Ah" data-com="0ms" data-img="123kva.avif" onclick="npcSelKva(this)">1 KVA</button>
-        <button class="npc-kva-btn visible" data-type="rackable" data-kva="2kva" data-price="58000" data-power="1 800W" data-bat="4/ 9Ah" data-com="0ms" data-img="123kva.avif" onclick="npcSelKva(this)">2 KVA</button>
-        <button class="npc-kva-btn visible" data-type="rackable" data-kva="3kva" data-price="78000" data-power="2 700W" data-bat="6/ 9Ah" data-com="0ms" data-img="123kva.avif" onclick="npcSelKva(this)">3 KVA</button>
-        <!-- TOUR: 3 KVA / 6 KVA / 10 KVA -->
-        <button class="npc-kva-btn" data-type="tour" data-kva="3kva" data-price="75000" data-power="2 700W" data-bat="6/ 9Ah" data-com="0ms" data-img="610kvaTour.avif" onclick="npcSelKva(this)">3 KVA</button>
-        <button class="npc-kva-btn" data-type="tour" data-kva="6kva" data-price="126000" data-power="5 400W" data-bat="16/ 7Ah" data-com="0ms" data-img="610kvaTour.avif" onclick="npcSelKva(this)">6 KVA</button>
-        <button class="npc-kva-btn" data-type="tour" data-kva="10kva" data-price="188000" data-power="9 000W" data-bat="16/ 9Ah" data-com="0ms" data-img="610kvaTour.avif" onclick="npcSelKva(this)">10 KVA</button>
+        <button class="npc-kva-btn visible active" data-type="rackable" data-kva="2kva" data-price="58000" data-power="2KVA/1.8kW" data-bat="24V" data-com="0ms"  onclick="npcSelKva(this)">2 KVA</button>
+        <button class="npc-kva-btn visible" data-type="rackable" data-kva="3kva" data-price="78000" data-power="3KVA/2.7kW" data-bat="36V" data-com="0ms" onclick="npcSelKva(this)">3 KVA</button>
+        <button class="npc-kva-btn visible" data-type="rackable" data-kva="6kva" data-price="130000" data-power="6KVA/5.4kW" data-bat="48V" data-com="0ms" onclick="npcSelKva(this)">6 KVA</button>
+        <button class="npc-kva-btn visible" data-type="rackable" data-kva="10kva" data-price="195000" data-power="10KVA/9kW" data-bat="96V" data-com="0ms" onclick="npcSelKva(this)">10 KVA</button>
+        <button class="npc-kva-btn" data-type="tour" data-kva="1kva" data-price="42000" data-power="1KVA/0.9kW" data-bat="12V" data-com="0ms" data-img="610kvaTour.avif" onclick="npcSelKva(this)">1 KVA</button>
+        <button class="npc-kva-btn" data-type="tour" data-kva="2kva" data-price="56000" data-power="2KVA/1.8kW" data-bat="24V" data-com="0ms" data-img="610kvaTour.avif" onclick="npcSelKva(this)">2 KVA</button>
+        <button class="npc-kva-btn" data-type="tour" data-kva="3kva" data-price="75000" data-power="3KVA/2.7kW" data-bat="36V" data-com="0ms" data-img="610kvaTour.avif" onclick="npcSelKva(this)">3 KVA</button>
+        <button class="npc-kva-btn" data-type="tour" data-kva="6kva" data-price="126000" data-power="6KVA/5.4kW" data-bat="48V" data-com="0ms" data-img="610kvaTour.avif" onclick="npcSelKva(this)">6 KVA</button>
+        <button class="npc-kva-btn" data-type="tour" data-kva="10kva" data-price="188000" data-power="10KVA/9kW" data-bat="96V" data-com="0ms" data-img="610kvaTour.avif" onclick="npcSelKva(this)">10 KVA</button>
       </div>
     </div>
 
@@ -3107,16 +3109,16 @@ padding: 17px 1px 10px;
     <!-- SPECS -->
     <div class="npc-specs">
       <div class="npc-spec">
-        <div class="npc-spec-val" id="npc-spec-power">900W</div>
+        <div class="npc-spec-val" id="npc-spec-power">2 KW</div>
         <div class="npc-spec-key">Puissance</div>
       </div>
       <div class="npc-spec">
-        <div class="npc-spec-val" id="npc-spec-bat" style="font-size:17px;">24V / 18Ah</div>
+        <div class="npc-spec-val" id="npc-spec-bat">0ms</div>
         <div class="npc-spec-key">Batterie</div>
       </div>
       <div class="npc-spec">
-        <div class="npc-spec-val" id="npc-spec-com">0ms</div>
-        <div class="npc-spec-key">Transfert</div>
+        <div class="npc-spec-val" id="npc-spec-com">Pure Sine Wave</div>
+        <div class="npc-spec-key">Commutation</div>
       </div>
     </div>
 
@@ -3124,10 +3126,10 @@ padding: 17px 1px 10px;
     <div class="npc-price-row" aria-live="polite">
       <div class="npc-price-copy">
         <span class="npc-price-label">السعر — Prix</span>
-        <span class="npc-price-note" id="npc-price-note">Rackable 1 KVA</span>
+        <span class="npc-price-note" id="npc-price-note">Rackable 2 KVA</span>
       </div>
       <div class="npc-price-main">
-        <span class="npc-price-val" id="npc-price-val">42 000</span>
+        <span class="npc-price-val" id="npc-price-val">58 000</span>
         <span class="npc-price-currency">DZD</span>
       </div>
     </div>
@@ -3143,77 +3145,206 @@ padding: 17px 1px 10px;
 
 <script>
 (function(){
+
   const npcPrices = {
-    rackable:{'1kva':42000,'2kva':58000,'3kva':78000},
-    tour:{'3kva':75000,'6kva':126000,'10kva':188000}
+    rackable:{
+      '2kva':66000,
+      '3kva':80000,
+      '6kva':198000,
+      '10kva':270000
+    },
+
+    tour:{
+      '1kva':45000,
+      '2kva':55000,
+      '3kva':65000,
+      '6kva':180000,
+      '10kva':242000
+    }
   };
-  let npcType='rackable', npcKva='1kva';
+
+  let npcType='rackable';
+  let npcKva='2kva';
+
+  const npcSpecs = {
+    rackable:{
+      '2kva':{
+        power:'2 KW',
+        battery:'4/ 7Ah',
+        comm:'0ms'
+      },
+      '3kva':{
+        power:'3 KW',
+        battery:'6/ 7Ah',
+        comm:'0ms'
+      },
+      '6kva':{
+        power:'6 KW',
+        battery:'Externe',
+        comm:'0ms'
+      },
+      '10kva':{
+        power:'10 KW',
+        battery:'Externe',
+        comm:'0ms'
+      }
+    },
+
+    tour:{
+      '1kva':{
+        power:'1 KW',
+        battery:'2/ 7Ah',
+        comm:'0ms'
+      },
+      '2kva':{
+        power:'2 KW',
+        battery:'4/ 7Ah',
+        comm:'0ms'
+      },
+      '3kva':{
+        power:'3 KW',
+        battery:'6/ 7Ah',
+        comm:'0ms'
+      },
+      '6kva':{
+        power:'6 KW',
+        battery:'Externe',
+        comm:'0ms'
+      },
+      '10kva':{
+        power:'10 KW',
+        battery:'Externe',
+        comm:'0ms'
+      }
+    }
+  };
 
   window.npcSelectType = function(type){
+
     npcType = type;
-    document.querySelectorAll('.npc-type-btn').forEach(b=>b.classList.remove('active'));
-    document.getElementById('npc-btn-'+type).classList.add('active');
-    document.querySelectorAll('.npc-kva-btn').forEach(b=>{
-      b.classList.remove('visible','active');
-      if(b.dataset.type===type) b.classList.add('visible');
+
+    document.querySelectorAll('.npc-type-btn')
+      .forEach(btn=>btn.classList.remove('active'));
+
+    document.getElementById('npc-btn-'+type)
+      ?.classList.add('active');
+
+    const rack=document.getElementById('npc-rack-svg');
+    const tour=document.getElementById('npc-tour-svg');
+
+    if(rack) rack.style.display = type==='rackable' ? '' : 'none';
+    if(tour) tour.style.display = type==='tour' ? '' : 'none';
+
+    document.querySelectorAll('.npc-kva-btn').forEach(btn=>{
+      btn.classList.remove('active','visible');
+
+      if(btn.dataset.type===type){
+        btn.classList.add('visible');
+      }
     });
-    const first=document.querySelector('.npc-kva-btn[data-type="'+type+'"]');
-    if(first){first.classList.add('active');npcKva=first.dataset.kva;npcUpdate(first);}
+
+    const firstBtn =
+      document.querySelector(
+        '.npc-kva-btn.visible'
+      );
+
+    if(firstBtn){
+
+      firstBtn.classList.add('active');
+
+      npcKva = firstBtn.dataset.kva;
+
+      npcUpdate(firstBtn);
+    }
   };
 
   window.npcSelKva = function(btn){
-    document.querySelectorAll('.npc-kva-btn').forEach(b=>b.classList.remove('active'));
+
+    document.querySelectorAll('.npc-kva-btn')
+      .forEach(b=>b.classList.remove('active'));
+
     btn.classList.add('active');
-    npcKva=btn.dataset.kva;
+
+    npcKva = btn.dataset.kva;
+
     npcUpdate(btn);
   };
 
   function npcUpdate(btn){
-    const typeLabel = npcType==='rackable' ? 'Rackable' : 'Tour';
-    const kvaLabel  = btn.dataset.kva.replace('kva',' KVA').toUpperCase();
-    const label     = typeLabel+' '+kvaLabel;
 
-    /* price note */
-    document.getElementById('npc-price-note').textContent = label;
+    const data = npcSpecs[npcType][npcKva];
 
-    /* specs */
-    const powerVal = btn.dataset.power || '—';
-    const batVal   = btn.dataset.bat   || '—';
-    const comVal   = btn.dataset.com   || '0ms';
+    const label =
+      (npcType==='rackable'
+        ? 'Rackable '
+        : 'Tour ')
+      +
+      btn.dataset.kva.replace('kva',' KVA');
 
-    document.getElementById('npc-spec-power').textContent = powerVal;
+    const imgLabel =
+      document.getElementById('npc-img-label');
 
-    /* battery: reduce font size for long strings like "192V / 144Ah" */
-    const batEl = document.getElementById('npc-spec-bat');
-    batEl.textContent = batVal;
-    batEl.style.fontSize = batVal.length > 10 ? '14px' : batVal.length > 7 ? '17px' : '22px';
+    const note =
+      document.getElementById('npc-price-note');
 
-    document.getElementById('npc-spec-com').textContent = comVal;
+    if(imgLabel) imgLabel.textContent = label;
+    if(note) note.textContent = label;
 
-    /* image */
-    const imgSrc = btn.dataset.img;
-    if(imgSrc){
-      const imgEl = document.getElementById('ups-product-img');
-      if(imgEl){
-        imgEl.classList.add('image-fade-out');
-        setTimeout(()=>{
-          imgEl.src = imgSrc;
-          imgEl.alt = label;
-          imgEl.classList.remove('image-fade-out');
-        }, 200);
-      }
-    }
+    document.getElementById('npc-spec-power').textContent =
+      data.power;
 
-    /* price */
-    const p = npcPrices[npcType][npcKva];
-    if(p) document.getElementById('npc-price-val').textContent = p.toLocaleString('fr-DZ');
+    document.getElementById('npc-spec-bat').textContent =
+      data.battery;
+
+    document.getElementById('npc-spec-com').textContent =
+      data.comm;
+
+    const price =
+      npcPrices[npcType][npcKva];
+
+    document.getElementById('npc-price-val').textContent =
+      new Intl.NumberFormat('fr-DZ')
+      .format(price);
+
+    const productImg = document.getElementById('ups-product-img');
+
+const images = {
+
+  rackable:{
+    '2kva':'2rack.jpg',
+    '3kva':'3rack.jpg',
+    '6kva':'6rack.jpg',
+    '10kva':'10rack.jpg'
+  },
+
+  tour:{
+    '1kva':'1tour.jpg',
+    '2kva':'2tour.jpg',
+    '3kva':'3tour.jpg',
+    '6kva':'6tour.jpg',
+    '10kva':'10tour.jpg'
   }
 
-  /* Init: Rackable 1KVA on load */
-  document.addEventListener('DOMContentLoaded', function(){
-    const initBtn = document.querySelector('.npc-kva-btn[data-type="rackable"][data-kva="1kva"]');
-    if(initBtn) npcUpdate(initBtn);
+};
+
+if(productImg){
+  productImg.src = images[npcType][npcKva];
+}  
+  }
+
+  document.addEventListener('DOMContentLoaded',()=>{
+
+    const first =
+      document.querySelector(
+        '.npc-kva-btn[data-type="rackable"]'
+      );
+
+    if(first){
+      npcUpdate(first);
+    }
   });
+
+
 })();
 </script>
 </div><!-- /hero-visual -->
@@ -3232,8 +3363,6 @@ padding: 17px 1px 10px;
     <button class="modal-close-btn">&times;</button>
     <h3 class="modal-title">Spécifications Techniques</h3>
     <div class="modal-tabs">
-      <button class="modal-tab-btn active" data-tab="rackable">RACK</button>
-      <button class="modal-tab-btn" data-tab="tour">TOUR</button>
     </div>
     <div class="modal-image-container" id="modal-img-gallery"></div>
   </div>
@@ -3274,7 +3403,7 @@ padding: 17px 1px 10px;
       <div class="solution-panel">
         <div style="font-size:2.5rem;margin-bottom:16px;">🛡️</div>
         <div class="section-label">الحل — La Solution</div>
-        <div class="solution-headline">Onduleur icon<br>يحمي بشكل <span class="accent">مستمر</span></div>
+        <div class="solution-headline">Onduleur HBM<br>يحمي بشكل <span class="accent">مستمر</span></div>
         <p class="solution-desc" style="text-align: left;">Technologie Online double conversion — votre équipement fonctionne toujours sur alimentation batterie parfaitement régulée, sans aucune interruption même en cas de coupure totale</p>
         <ul class="solution-points">
           <li>حماية فورية بدون انقطاع — Protection instantanée 0ms</li>
@@ -3583,16 +3712,20 @@ function scrollToSection(id) {
 
 const PRODUCT_CURRENCY = 'DZD';
 const PRODUCT_PRICES = {
-  rackable: {
-    '1kva': 65000,
-    '2kva': 92000,
-    '3kva': 125000
-  },
-  tour: {
-    '3kva': 135000,
-    '6kva': 245000,
-    '10kva': 365000
-  }
+  rackable:{
+      '2kva':66000,
+      '3kva':80000,
+      '6kva':198000,
+      '10kva':270000
+    },
+
+    tour:{
+      '1kva':45000,
+      '2kva':55000,
+      '3kva':65000,
+      '6kva':180000,
+      '10kva':242000
+    }
 };
 const DELIVERY_PRICE_BY_WILAYA = {
   '01': 2800,
@@ -3694,15 +3827,23 @@ function formatPrice(amount, currency = PRODUCT_CURRENCY) {
   let currentKva = null;
  
   const productsData = {
-    'tour': {
-      '3kva': { label: '3 KVA', image: '3kvaTour.avif', power: '2 700 W', battery: '6 × 9 Ah', eco: '≥ 97%', price: { amount: PRODUCT_PRICES.tour['3kva'], currency: PRODUCT_CURRENCY } },
-      '6kva': { label: '6 KVA', image: '610kvaTour.avif', power: '5 400 W', battery: '16 × 7 Ah', eco: '≥ 98%', price: { amount: PRODUCT_PRICES.tour['6kva'], currency: PRODUCT_CURRENCY } },
-      '10kva': { label: '10 KVA', image: '610kvaTour.avif', power: '9 000 W', battery: '16 × 9 Ah', eco: '≥ 98%', price: { amount: PRODUCT_PRICES.tour['10kva'], currency: PRODUCT_CURRENCY } }
-    },
     'rackable': {
-      '1kva': { label: '1 KVA', image: '123kva.avif', power: '900 W', battery: '2 × 9 Ah', eco: '≥ 95%', price: { amount: PRODUCT_PRICES.rackable['1kva'], currency: PRODUCT_CURRENCY } },
-      '2kva': { label: '2 KVA', image: '123kva.avif', power: '1 800 W', battery: '4 × 9 Ah', eco: '≥ 96%', price: { amount: PRODUCT_PRICES.rackable['2kva'], currency: PRODUCT_CURRENCY } },
-      '3kva': { label: '3 KVA', image: '123kva.avif', power: '2 700 W', battery: '6 × 9 Ah', eco: '≥ 97%', price: { amount: PRODUCT_PRICES.rackable['3kva'], currency: PRODUCT_CURRENCY } }
+      // CR2K(S) — Online double conversion — Spec sheet: 380×438×88mm, 16.23 kg
+      '2kva': { label: '2 KVA', image: '123kva.avif', power: '2 KW', battery: '4 × 7 Ah', eco: '0 ms', price: { amount: PRODUCT_PRICES.rackable['2kva'], currency: PRODUCT_CURRENCY } },
+      // CR3K(S) — Online double conversion — Spec sheet: 506×438×88mm, 21.54 kg
+      '3kva': { label: '3 KVA', image: '123kva.avif', power: '3 KW', battery: '6 × 7 Ah', eco: '0 ms', price: { amount: PRODUCT_PRICES.rackable['3kva'], currency: PRODUCT_CURRENCY } },
+      // CR6S — Online double conversion — Long-run batteries
+      '6kva': { label: '6 KVA', image: '610kvaTour.avif', power: '6 KW', battery: '16 × 7 Ah', eco: '0 ms', price: { amount: PRODUCT_PRICES.rackable['6kva'], currency: PRODUCT_CURRENCY } },
+      // CR10S — Online double conversion — Spec sheet: 380×438×88mm, 9.15 kg (long-run)
+      '10kva': { label: '10 KVA', image: '610kvaTour.avif', power: '10 KW', battery: '18 × 9 Ah', eco: '0 ms', price: { amount: PRODUCT_PRICES.rackable['10kva'], currency: PRODUCT_CURRENCY } }
+    },
+    'tour': {
+      // LINE INTERACTIVE TOUR MEDICAL HBM — PF ≈ 0.8
+      '1kva': { label: '1 KVA', image: '3kvaTour.avif', power: '800 W', battery: '2 × 9 Ah', eco: '4 ms', price: { amount: PRODUCT_PRICES.tour['1kva'], currency: PRODUCT_CURRENCY } },
+      '2kva': { label: '2 KVA', image: '3kvaTour.avif', power: '1.6 KW', battery: '4 × 9 Ah', eco: '4 ms', price: { amount: PRODUCT_PRICES.tour['2kva'], currency: PRODUCT_CURRENCY } },
+      '3kva': { label: '3 KVA', image: '3kvaTour.avif', power: '2.4 KW', battery: '6 × 9 Ah', eco: '4 ms', price: { amount: PRODUCT_PRICES.tour['3kva'], currency: PRODUCT_CURRENCY } },
+      '6kva': { label: '6 KVA', image: '610kvaTour.avif', power: '4.8 KW', battery: '16 × 9 Ah', eco: '4 ms', price: { amount: PRODUCT_PRICES.tour['6kva'], currency: PRODUCT_CURRENCY } },
+      '10kva': { label: '10 KVA', image: '610kvaTour.avif', power: '8 KW', battery: '16 × 9 Ah', eco: '4 ms', price: { amount: PRODUCT_PRICES.tour['10kva'], currency: PRODUCT_CURRENCY } }
     }
   };
 
@@ -3938,8 +4079,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ===== ORDER PRODUCT PICKER =====
 const orderProductOptions = {
-  rackable: ['1 KVA', '2 KVA', '3 KVA'],
-  tour: ['3 KVA', '6 KVA', '10 KVA']
+  rackable: ['2 KVA', '3 KVA', '6 KVA', '10 KVA'],
+  tour: ['1 KVA', '2 KVA', '3 KVA', '6 KVA', '10 KVA']
 };
 
 function fillOrderKvaOptions() {
